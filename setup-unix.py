@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 
 import os
+import sys
 from os import path
 from pathlib import Path
 from typing import Any, Callable
@@ -70,7 +71,7 @@ def backup(io: IO, file: str):
 
             if answer == 'n':
                 terminate()
-            elif answer in ['y', 'Y']:
+            elif answer in ['y', 'Y', '']:
                 os.remove(backed)
                 io.tell(f"Successfully removed '{backed}' file.")
                 break
@@ -80,15 +81,22 @@ def backup(io: IO, file: str):
 
 @step('Link')
 def link(io: IO, file: str, to: str):
+    path = Path(to)
+    path.parent.mkdir(parents=True, exist_ok=True)
+
     os.symlink(file, to)
+
     io.tell(f"Successfully linked '{file}' to '{to}'.")
 
 
 if __name__ == '__main__':
+    _, neo, *rest = sys.argv
+
     print('Setting up your vimrc environment...')
 
     home_dir = str(Path.home())
-    home_vimrc = path.join(home_dir, '.vimrc')
+    home_vimrc = path.join(home_dir, '.config', 'nvim', 'init.vim') if neo == '--neo' else \
+                 path.join(home_dir, '.vimrc')
     script_dir = Path(__file__).parent.absolute()
     script_vimrc = path.join(script_dir, '.vimrc')
 
