@@ -2,6 +2,14 @@
 " -- Plugins --
 " -------------
 call plug#begin('~/.local/share/nvim/plugged')
+
+" Common.
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
+" Autocomplete.
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 call plug#end()
 
 
@@ -84,8 +92,39 @@ set shiftwidth=4
 " Draws a line at 80 column.
 set colorcolumn=80
 
+" FZF.
+fun! UseFZF()
+    :nnoremap <C-p> :GFiles<CR>
+endfun
+
+" COC.
+fun! UseCOC()
+    " Closes the preview window after the completion is made.
+    autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+    " Make <Tab> to complete the selected option.
+    inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<Tab>"
+
+    " Make <CR> to complete the selected option.
+    inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+endfun
+
+:call UseFZF()
+:call UseCOC()
+
 " --------------
 " -- Bindings --
 " --------------
 " Reload a current file.
 :nnoremap <M-r> :source %<CR>
+
+" Exit from whole VIM like in Emacs.
+" (Not works without unbinding <C-c> first.)
+:nnoremap <C-c> <Nop>
+:nnoremap <C-x><C-c> :qa<CR>
+
+" Use 0 as ^.
+map 0 ^
+
+" Splits.
+nnoremap <M-w> :q<CR>
