@@ -3,11 +3,15 @@
 " -------------
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Common.
+" -- Common --
+" Incredible fast fuzzy search.
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Autocomplete.
+" Filesystem tree.
+Plug 'scrooloose/nerdtree'
+
+" -- Autocomplete --
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
@@ -101,6 +105,15 @@ fun! UseFZF()
     :nnoremap <M-x> :Commands<CR>
 endfun
 
+:call UseFZF()
+
+" NERDTree.
+fun! UseNERDTree() 
+    :nnoremap <M-1> :NERDTreeToggle<CR>
+endfun
+
+:call UseNERDTree()
+
 " COC.
 fun! UseCOC()
     " Closes the preview window after the completion is made.
@@ -113,8 +126,8 @@ fun! UseCOC()
     inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 endfun
 
-:call UseFZF()
 :call UseCOC()
+
 
 " --------------
 " -- Bindings --
