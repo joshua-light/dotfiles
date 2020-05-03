@@ -94,7 +94,11 @@ set colorcolumn=80
 
 " FZF.
 fun! UseFZF()
-    :nnoremap <C-p> :GFiles<CR>
+    :nnoremap <M-p> <Nop>
+    :nnoremap <M-p> :GFiles<CR>
+
+    :nnoremap <M-x> <Nop>
+    :nnoremap <M-x> :Commands<CR>
 endfun
 
 " COC.
