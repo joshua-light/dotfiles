@@ -7,6 +7,12 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'joshdick/onedark.vim'
 
 " -- Common --
+" Brackets of different levels have different colors.
+Plug 'frazrepo/vim-rainbow'
+
+" Icons are shown in many plugins.
+Plug 'ryanoasis/vim-devicons'
+
 " Incredible fast fuzzy search.
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -14,9 +20,15 @@ Plug 'junegunn/fzf.vim'
 " Filesystem tree.
 Plug 'scrooloose/nerdtree'
 
-" -- Autocomplete --
+" Autocompletion.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ycm-core/YouCompleteMe'
+
+" Syntax checking.
+Plug 'w0rp/ale'
+
+" -- Languages --
+"
+" Python.
 
 call plug#end()
 
@@ -24,6 +36,9 @@ call plug#end()
 " -------------
 " -- Configs --
 " -------------
+" Encoding is UTF-8.
+set encoding=utf-8
+
 " Syntax highlighting is on.
 syntax on
 
@@ -57,6 +72,13 @@ set undodir=~/.vim/undo//
 " Searching with `/` highlights results as you type.
 set incsearch
 
+" Searching with `/` is case insensitive.
+set ignorecase
+
+" Searching with `/` is case insensitive only if there are no capital letters
+" in search.
+set smartcase
+
 " Line numbers are visible.
 set number
 
@@ -81,6 +103,10 @@ set signcolumn=yes
 " 24-bit RGB palette is used to display colors.
 set termguicolors
 
+" Colors from dark palette are used (doesn't actually change the background
+" color).
+set background=dark
+
 " Sounds for errors are disabled.
 set noerrorbells
 
@@ -102,10 +128,21 @@ set shiftwidth=4
 
 " Draws a line at 80 column.
 set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=#000000
+
+" Messages are not shown at last line when in Insert, Visual or Replace modes.
+set noshowmode
 
 " -- Plugins --
+" vim-rinbow.
+fun! InitVimRainbow()
+    let g:rainbow_active = 1
+endfun
+
+:call InitVimRainbow()
+
 " FZF.
-fun! UseFZF()
+fun! InitFZF()
     :nnoremap <M-p> <Nop>
     :nnoremap <M-p> :GFiles<CR>
 
@@ -113,17 +150,17 @@ fun! UseFZF()
     :nnoremap <M-x> :Commands<CR>
 endfun
 
-:call UseFZF()
+:call InitFZF()
 
 " NERDTree.
-fun! UseNERDTree() 
+fun! InitNERDTree() 
     :nnoremap <M-1> :NERDTreeToggle<CR>
 endfun
 
-:call UseNERDTree()
+:call InitNERDTree()
 
 " COC.
-fun! UseCOC()
+fun! InitCOC()
     " Closes the preview window after the completion is made.
     autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -136,25 +173,42 @@ fun! UseCOC()
     " Navigation.
     nmap gd <Nop>
     nmap gd <Plug>(coc-definition)
+
+    nmap gr <Nop>
+    nmap gr <Plug>(coc-references)
+
+    nmap ` <Nop>
     nmap ` <Plug>(coc-rename)
 endfun
 
-" :call UseCOC()
+:call InitCOC()
 
-fun! UseYCM()
-    let g:ycm_filetype_whitelist = {
-			\ "python":1,
-			\ }
+" Ale.
+fun! InitAle()
+    let g:ale_lint_on_enter = 0
+    let g:ale_lint_on_save = 0
+    let g:ale_lint_delay = 50
+    let g:ale_lint_on_text_changed = 'always'
 endfun
 
-:call UseYCM()
-
+:call InitAle()
 
 " -- Languages --
-fun UsePython()
+fun InitPython()
+    let python_highlight_all=1
+    let NERDTreeIgnore=['\.pyc$', '\~$']
+
+    au BufNewFile,BufRead *.py
+      \   set tabstop=4
+      \ | set softtabstop=4
+      \ | set shiftwidth=4
+      \ | set textwidth=79
+      \ | set expandtab
+      \ | set autoindent
+      \ | set fileformat=unix
 endfun
 
-:call UsePython()
+:call InitPython()
 
 
 " --------------
@@ -166,10 +220,16 @@ endfun
 " Exit from whole VIM like in Emacs.
 " (Not works without unbinding <C-c> first.)
 :nnoremap <C-c> <Nop>
-:nnoremap <C-x><C-c> :qa<CR>
+:nnoremap <C-x><C-c> :qa!<CR>
 
 " Use 0 as ^.
 map 0 ^
+
+" Use jj to escape Insert mode.
+imap jj <Esc>
+
+" Make sure <C-c> behaves as <Esc> (it helps with autoclosing windows).
+imap <C-c> <Esc>
 
 " Splits.
 nnoremap <M-w> :q<CR>
