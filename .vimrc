@@ -3,6 +3,9 @@
 " -------------
 call plug#begin('~/.local/share/nvim/plugged')
 
+" -- Visual --
+Plug 'joshdick/onedark.vim'
+
 " -- Common --
 " Incredible fast fuzzy search.
 Plug 'junegunn/fzf'
@@ -13,6 +16,7 @@ Plug 'scrooloose/nerdtree'
 
 " -- Autocomplete --
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ycm-core/YouCompleteMe'
 
 call plug#end()
 
@@ -22,6 +26,9 @@ call plug#end()
 " -------------
 " Syntax highlighting is on.
 syntax on
+
+" Color scheme is OneDark.
+colorscheme onedark
 
 " When a new buffer is opened, the old one is hidden instead of being closed.
 set hidden
@@ -96,6 +103,7 @@ set shiftwidth=4
 " Draws a line at 80 column.
 set colorcolumn=80
 
+" -- Plugins --
 " FZF.
 fun! UseFZF()
     :nnoremap <M-p> <Nop>
@@ -124,9 +132,29 @@ fun! UseCOC()
 
     " Make <CR> to complete the selected option.
     inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+
+    " Navigation.
+    nmap gd <Nop>
+    nmap gd <Plug>(coc-definition)
+    nmap ` <Plug>(coc-rename)
 endfun
 
-:call UseCOC()
+" :call UseCOC()
+
+fun! UseYCM()
+    let g:ycm_filetype_whitelist = {
+			\ "python":1,
+			\ }
+endfun
+
+:call UseYCM()
+
+
+" -- Languages --
+fun UsePython()
+endfun
+
+:call UsePython()
 
 
 " --------------
