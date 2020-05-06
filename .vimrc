@@ -7,9 +7,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'joshdick/onedark.vim'
 
 " -- Common --
-" Brackets of different levels have different colors.
-Plug 'frazrepo/vim-rainbow'
-
 " Icons are shown in many plugins.
 Plug 'ryanoasis/vim-devicons'
 
@@ -148,13 +145,6 @@ set noshowmode
 
 
 " -- Plugins --
-" vim-rinbow.
-fun! InitVimRainbow()
-    let g:rainbow_active = 1
-endfun
-
-:call InitVimRainbow()
-
 " FZF.
 fun! InitFZF()
     function! RipgrepFzf(query, fullscreen)
