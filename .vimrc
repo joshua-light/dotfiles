@@ -13,9 +13,15 @@ Plug 'frazrepo/vim-rainbow'
 " Icons are shown in many plugins.
 Plug 'ryanoasis/vim-devicons'
 
+" Highlights after incremental search are turned off automatically.
+Plug 'haya14busa/is.vim'
+
 " Incredible fast fuzzy search.
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+
+" Incredible fast grep thing.
+Plug 'jremmen/vim-ripgrep'
 
 " Filesystem tree.
 Plug 'scrooloose/nerdtree'
@@ -44,6 +50,9 @@ syntax on
 
 " Color scheme is OneDark.
 colorscheme onedark
+
+" 24-bit RGB palette is used to display colors.
+set termguicolors
 
 " When a new buffer is opened, the old one is hidden instead of being closed.
 set hidden
@@ -100,9 +109,6 @@ set guicursor=n-v-c-i:block-cursor
 " the text).
 set signcolumn=yes
 
-" 24-bit RGB palette is used to display colors.
-set termguicolors
-
 " Colors from dark palette are used (doesn't actually change the background
 " color).
 set background=dark
@@ -132,6 +138,7 @@ highlight ColorColumn ctermbg=0 guibg=#000000
 
 " Messages are not shown at last line when in Insert, Visual or Replace modes.
 set noshowmode
+
 
 " -- Plugins --
 " vim-rinbow.
@@ -209,6 +216,16 @@ fun InitPython()
 endfun
 
 :call InitPython()
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 
 " --------------
