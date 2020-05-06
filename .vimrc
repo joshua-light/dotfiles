@@ -29,12 +29,19 @@ Plug 'scrooloose/nerdtree'
 " Autocompletion.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" .editorconfig.
+Plug 'editorconfig/editorconfig-vim'
+
 " Syntax checking.
 Plug 'w0rp/ale'
 
 " -- Languages --
 "
 " Python.
+
+" C#.
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'OrangeT/vim-csharp'
 
 call plug#end()
 
@@ -150,6 +157,17 @@ endfun
 
 " FZF.
 fun! InitFZF()
+    function! RipgrepFzf(query, fullscreen)
+      let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+      let initial_command = printf(command_fmt, shellescape(a:query))
+      let reload_command = printf(command_fmt, '{q}')
+      let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+      call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+    endfunction
+
+    " An interactive fuzzy search with RG command.
+    command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
     :nnoremap <M-p> <Nop>
     :nnoremap <M-p> :GFiles<CR>
 
@@ -196,6 +214,8 @@ fun! InitAle()
     let g:ale_lint_on_save = 0
     let g:ale_lint_delay = 50
     let g:ale_lint_on_text_changed = 'always'
+
+    let g:ale_linters = { 'cs': ['OmniSharp'] }
 endfun
 
 :call InitAle()
@@ -217,15 +237,29 @@ endfun
 
 :call InitPython()
 
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
+fun InitCSharp()
+    " stdio Roslyn server is used (instead of HTTP).
+    let g:OmniSharp_server_stdio = 1
 
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+    " Semantic highlighting is turned on.
+    let g:OmniSharp_highlight_types = 3
+
+    " FZF is used as selector UI.
+    let g:OmniSharp_selector_ui = 'fzf'
+
+    " Mono is used as CSharp backend.
+    let g:OmniSharp_server_use_mono = 1
+
+    " Show type information automatically when the cursor stops moving.
+    " Note that the type is echoed to the Vim command line, and will overwrite
+    " any other messages in this space including e.g. ALE linting messages.
+    autocmd CursorHold *.cs OmniSharpTypeLookup
+
+    " The following commands are contextual, based on the cursor position.
+    autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
+endfun
+
+:call InitCSharp()
 
 
 " --------------
