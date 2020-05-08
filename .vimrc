@@ -4,11 +4,15 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " -- Visual --
+" Atom One Dark theme.
 Plug 'joshdick/onedark.vim'
 
 " -- Common --
 " Icons are shown in many plugins.
 Plug 'ryanoasis/vim-devicons'
+
+" More flexible search motions.
+Plug 'easymotion/vim-easymotion'
 
 " Highlights after incremental search are turned off automatically.
 Plug 'haya14busa/is.vim'
@@ -16,9 +20,6 @@ Plug 'haya14busa/is.vim'
 " Incredible fast fuzzy search.
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-
-" Incredible fast grep thing.
-Plug 'jremmen/vim-ripgrep'
 
 " Filesystem tree.
 Plug 'scrooloose/nerdtree'
@@ -143,17 +144,26 @@ highlight ColorColumn ctermbg=0 guibg=#000000
 " Messages are not shown at last line when in Insert, Visual or Replace modes.
 set noshowmode
 
+" Current line is highlighted.
+set cursorline
+
 
 " -- Plugins --
+fun! InitEasyMotion()
+    map s <Plug>(easymotion-overwin-f2)
+endfun
+
+:call InitEasyMotion()
+
 " FZF.
 fun! InitFZF()
-    function! RipgrepFzf(query, fullscreen)
-      let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
-      let initial_command = printf(command_fmt, shellescape(a:query))
-      let reload_command = printf(command_fmt, '{q}')
-      let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-      call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-    endfunction
+    fun! RipgrepFzf(query, fullscreen)
+        let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+        let initial_command = printf(command_fmt, shellescape(a:query))
+        let reload_command = printf(command_fmt, '{q}')
+        let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+        call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+    endfun
 
     " An interactive fuzzy search with RG command.
     command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
@@ -233,9 +243,6 @@ fun InitCSharp()
 
     " Semantic highlighting is turned on.
     let g:OmniSharp_highlight_types = 3
-
-    " FZF is used as selector UI.
-    let g:OmniSharp_selector_ui = 'fzf'
 
     " Mono is used as CSharp backend.
     let g:OmniSharp_server_use_mono = 1
