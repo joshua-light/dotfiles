@@ -33,6 +33,9 @@ Plug 'editorconfig/editorconfig-vim'
 " Syntax checking.
 Plug 'w0rp/ale'
 
+" Start screen is more customizable.
+Plug 'mhinz/vim-startify'
+
 " -- Languages --
 "
 " Python.
@@ -49,15 +52,6 @@ call plug#end()
 " -------------
 " Encoding is UTF-8.
 set encoding=utf-8
-
-" Syntax highlighting is on.
-syntax on
-
-" Color scheme is OneDark.
-colorscheme onedark
-
-" 24-bit RGB palette is used to display colors.
-set termguicolors
 
 " When a new buffer is opened, the old one is hidden instead of being closed.
 set hidden
@@ -139,7 +133,6 @@ set shiftwidth=4
 
 " Draws a line at 80 column.
 set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=#000000
 
 " Messages are not shown at last line when in Insert, Visual or Replace modes.
 set noshowmode
@@ -147,16 +140,36 @@ set noshowmode
 " Current line is highlighted.
 set cursorline
 
+" Colors.
+fun InitColors()
+    " Syntax highlighting is on.
+    syntax on
+
+    " Color scheme is OneDark.
+    colorscheme onedark
+
+    " 24-bit RGB palette is used to display colors.
+    set termguicolors
+
+    " Colors are customized.
+    hi ColorColumn guifg=#5c6370
+    hi StatusLine guibg=#212429
+    hi CursorLine guibg=#23272c
+endfun
+
+:call InitColors()
+
 
 " -- Plugins --
-fun! InitEasyMotion()
+" EasyMotion.
+fun InitEasyMotion()
     map s <Plug>(easymotion-overwin-f2)
 endfun
 
 :call InitEasyMotion()
 
 " FZF.
-fun! InitFZF()
+fun InitFZF()
     fun! RipgrepFzf(query, fullscreen)
         let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
         let initial_command = printf(command_fmt, shellescape(a:query))
@@ -178,14 +191,14 @@ endfun
 :call InitFZF()
 
 " NERDTree.
-fun! InitNERDTree() 
+fun InitNERDTree() 
     :nnoremap <M-1> :NERDTreeToggle<CR>
 endfun
 
 :call InitNERDTree()
 
 " COC.
-fun! InitCOC()
+fun InitCOC()
     " Closes the preview window after the completion is made.
     autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -209,7 +222,7 @@ endfun
 :call InitCOC()
 
 " Ale.
-fun! InitAle()
+fun InitAle()
     let g:ale_lint_on_enter = 0
     let g:ale_lint_on_save = 0
     let g:ale_lint_delay = 50
@@ -257,6 +270,13 @@ fun InitCSharp()
 endfun
 
 :call InitCSharp()
+
+fun InitHaskell()
+    au BufNewFile,BufRead *.hs
+      \   nnoremap <buffer> <M-;> :!runhaskell %<CR>
+endfun
+
+:call InitHaskell()
 
 
 " --------------
