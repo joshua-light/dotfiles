@@ -37,7 +37,10 @@ Plug 'w0rp/ale'
 Plug 'mhinz/vim-startify'
 
 " -- Languages --
-"
+
+" Latex.
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+
 " Python.
 
 " C#.
@@ -186,6 +189,9 @@ fun InitFZF()
 
     :nnoremap <M-x> <Nop>
     :nnoremap <M-x> :Commands<CR>
+
+    " Completion is done in floating window at the center of the screen.
+    let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8, 'yoffset':0.5, 'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
 endfun
 
 :call InitFZF()
@@ -271,13 +277,6 @@ endfun
 
 :call InitCSharp()
 
-fun InitHaskell()
-    au BufNewFile,BufRead *.hs
-      \   nnoremap <buffer> <M-;> :!runhaskell %<CR>
-endfun
-
-:call InitHaskell()
-
 
 " --------------
 " -- Bindings --
@@ -301,3 +300,6 @@ imap <C-c> <Esc>
 
 " Splits.
 nnoremap <M-w> :q<CR>
+
+" Run previous shell command.
+nnoremap <buffer> <M-;> :!!<CR>
