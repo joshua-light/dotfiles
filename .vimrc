@@ -285,7 +285,7 @@ endfun
 " -- Bindings --
 " --------------
 " Reload a current file.
-:nnoremap <M-r> :source %<CR>
+:nnoremap <A-r> :source %<CR>
 
 " Exit from whole VIM like in Emacs.
 " (Not works without unbinding <C-c> first.)
@@ -302,12 +302,12 @@ imap jj <Esc>
 imap <C-c> <Esc>
 
 " Splits.
-nnoremap <M-w> :q<CR>
+nnoremap <A-w> :q<CR>
 
 " Run previous shell command.
-nnoremap <M-;> :!!<CR>
+nnoremap <A-;> :!!<CR>
 
 " Git.
-nnoremap <M-g>g :Gstatus<CR>
+nnoremap <A-g> :Gstatus<CR>
 nnoremap <C-k> :Gcommit<CR>
 nnoremap <C-p> :Gpush<CR>
