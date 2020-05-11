@@ -8,6 +8,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'joshdick/onedark.vim'
 
 " -- Common --
+" Git.
+Plug 'tpope/vim-fugitive'
+
 " Icons are shown in many plugins.
 Plug 'ryanoasis/vim-devicons'
 
@@ -302,4 +305,9 @@ imap <C-c> <Esc>
 nnoremap <M-w> :q<CR>
 
 " Run previous shell command.
-nnoremap <buffer> <M-;> :!!<CR>
+nnoremap <M-;> :!!<CR>
+
+" Git.
+nnoremap <M-g>g :Gstatus<CR>
+nnoremap <C-k> :Gcommit<CR>
+nnoremap <C-p> :Gpush<CR>
