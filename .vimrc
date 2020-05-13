@@ -45,6 +45,8 @@ Plug 'mhinz/vim-startify'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 " Python.
+" Syntax highlighting.
+Plug 'vim-python/python-syntax'
 
 " C#.
 Plug 'OmniSharp/omnisharp-vim'
@@ -244,7 +246,7 @@ endfun
 
 " -- Languages --
 fun InitPython()
-    let python_highlight_all=1
+    let g:python_highlight_all = 1
     let NERDTreeIgnore=['\.pyc$', '\~$']
 
     au BufNewFile,BufRead *.py
@@ -310,4 +312,5 @@ nnoremap <A-;> :!!<CR>
 " Git.
 nnoremap <A-g> :Gstatus<CR>
 nnoremap <C-k> :Gcommit<CR>
+nmap <C-p> <Nop>
 nnoremap <C-p> :Gpush<CR>
