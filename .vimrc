@@ -39,6 +39,9 @@ Plug 'w0rp/ale'
 " Start screen is more customizable.
 Plug 'mhinz/vim-startify'
 
+" Tags.
+Plug 'ludovicchabant/vim-gutentags'
+
 " -- Languages --
 
 " Latex.
@@ -47,6 +50,12 @@ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 " Python.
 " Syntax highlighting.
 Plug 'vim-python/python-syntax'
+
+" Automatic sorting of imports.
+Plug 'fisadev/vim-isort'
+
+" Automatic imports.
+Plug 'mgedmin/python-imports.vim'
 
 " C#.
 Plug 'OmniSharp/omnisharp-vim'
@@ -148,6 +157,9 @@ set noshowmode
 " Current line is highlighted.
 set cursorline
 
+" Set leader as space character.
+let mapleader = ' '
+
 " Colors.
 fun InitColors()
     " Syntax highlighting is on.
@@ -171,7 +183,7 @@ endfun
 " -- Plugins --
 " EasyMotion.
 fun InitEasyMotion()
-    map s <Plug>(easymotion-overwin-f2)
+    map s :call EasyMotion#User('\V\<'.escape(nr2char(getchar()), '\'), 0, 2, 0)<CR>
 endfun
 
 :call InitEasyMotion()
@@ -196,7 +208,7 @@ fun InitFZF()
     :nnoremap <M-x> :Commands<CR>
 
     " Completion is done in floating window at the center of the screen.
-    let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8, 'yoffset':0.5, 'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+    let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8, 'yoffset': 0.5, 'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
 endfun
 
 :call InitFZF()
@@ -226,8 +238,8 @@ fun InitCOC()
     nmap gr <Nop>
     nmap gr <Plug>(coc-references)
 
-    nmap ` <Nop>
-    nmap ` <Plug>(coc-rename)
+    nmap <Leader>r <Nop>
+    nmap <Leader>r <Plug>(coc-rename)
 endfun
 
 :call InitCOC()
@@ -247,6 +259,13 @@ endfun
 " -- Languages --
 fun InitPython()
     let g:python_highlight_all = 1
+    let g:kite_tab_complete = 1
+
+    set completeopt+=menuone   " show the popup menu even when there is only 1 match
+    set completeopt+=noinsert  " don't insert any text until user chooses a match
+    set completeopt-=longest   " don't insert the longest common text
+    set completeopt-=preview
+
     let NERDTreeIgnore=['\.pyc$', '\~$']
 
     au BufNewFile,BufRead *.py
@@ -257,6 +276,22 @@ fun InitPython()
       \ | set expandtab
       \ | set autoindent
       \ | set fileformat=unix
+
+    fun CleanUp()
+        let cursor_position = getpos('.')
+        exec 'Isort'
+        call setpos('.', cursor_position)
+    endfun
+
+    fun Import()
+        let cursor_position = getpos('.')
+        exec 'ImportName'
+        exec 'Isort'
+        call setpos('.', cursor_position)
+    endfun
+
+    nmap <Leader>s :call CleanUp()<CR>
+    nmap <Leader>i :call Import()<CR>
 endfun
 
 :call InitPython()
