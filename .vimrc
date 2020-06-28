@@ -8,6 +8,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'joshdick/onedark.vim'
 
 " -- Common --
+
 " Git.
 Plug 'tpope/vim-fugitive'
 
@@ -41,6 +42,10 @@ Plug 'mhinz/vim-startify'
 
 " Tags.
 Plug 'ludovicchabant/vim-gutentags'
+
+" Second brain.
+Plug 'vimwiki/vimwiki'
+Plug 'michal-h21/vim-zettel'
 
 " -- Languages --
 
@@ -254,7 +259,17 @@ fun InitAle()
     let g:ale_linters = { 'cs': ['OmniSharp'] }
 endfun
 
-:call InitAle()
+" VimWiki.
+fun InitVimWiki()
+    let g:vimwiki_list = [{'path': '~/git/JoshuaLight/zettelkasten', 'ext': 'md', 'syntax': 'markdown'}]
+endfun
+
+:call InitVimWiki()
+
+" Vim-Zettel.
+fun InitVimZettel()
+    let g:zettel_fzf_command = "rg --column --line-number --no-heading --color=always --ignore-case"
+endfun
 
 " -- Languages --
 fun InitPython()
