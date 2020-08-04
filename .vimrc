@@ -174,6 +174,12 @@ set secure
 " Set leader as space character.
 let mapleader = ' '
 
+set completeopt+=menuone
+set completeopt+=noinsert
+set completeopt-=longest
+set completeopt-=preview
+
+
 " Colors.
 fun InitColors()
     " Syntax highlighting is on.
@@ -290,11 +296,6 @@ fun InitPython()
     let g:python_highlight_all = 1
     let g:kite_tab_complete = 1
 
-    set completeopt+=menuone   " show the popup menu even when there is only 1 match
-    set completeopt+=noinsert  " don't insert any text until user chooses a match
-    set completeopt-=longest   " don't insert the longest common text
-    set completeopt-=preview
-
     let NERDTreeIgnore=['\.pyc$', '\~$']
 
     au BufNewFile,BufRead *.py
@@ -305,6 +306,8 @@ fun InitPython()
       \ | set expandtab
       \ | set autoindent
       \ | set fileformat=unix
+      \ | nmap <Leader>s :call CleanUp()<CR>
+      \ | nmap <Leader>i :call Import()<CR>
 
     fun CleanUp()
         let cursor_position = getpos('.')
@@ -319,9 +322,7 @@ fun InitPython()
         call setpos('.', cursor_position)
     endfun
 
-    nmap <Leader>s :call CleanUp()<CR>
-    nmap <Leader>i :call Import()<CR>
-endfun
+    endfun
 
 :call InitPython()
 
@@ -345,6 +346,45 @@ fun InitCSharp()
 endfun
 
 :call InitCSharp()
+
+fun InitRust()
+    autocmd BufNewFile,BufRead *.rs
+      \   set tabstop=4
+      \ | set softtabstop=4
+      \ | set shiftwidth=4
+      \ | set expandtab
+      \ | set autoindent
+      \ | set fileformat=unix
+      \ | nmap <Leader>s :RustFmt<CR>
+
+    hi rustKeyword guifg=#c678dd
+    hi rustStorage guifg=#c678dd
+    hi rustType guifg=#c678dd
+    hi rustStructure guifg=#c678dd
+
+    hi rustModPath guifg=#bfd2ff
+
+    hi rustFuncCall guifg=#dcdcaa
+    hi rustFuncName guifg=#dcdcaa
+    hi rustDecNumber guifg=#dcdcaa
+
+    hi rustString guifg=#ce9178
+    hi rustStringDelimiter guifg=#ce9178
+
+    hi rustIdentifier guifg=#61afef
+
+endfun
+
+:call InitRust()
+
+fun SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfun
+
+nmap <Leader>h :call SynStack()<CR>
 
 
 " --------------
