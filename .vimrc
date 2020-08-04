@@ -41,7 +41,7 @@ Plug 'w0rp/ale'
 Plug 'mhinz/vim-startify'
 
 " Tags.
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 
 " Second brain.
 Plug 'vimwiki/vimwiki'
@@ -65,6 +65,9 @@ Plug 'mgedmin/python-imports.vim'
 " C#.
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'OrangeT/vim-csharp'
+
+" Rust.
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
@@ -162,6 +165,12 @@ set noshowmode
 " Current line is highlighted.
 set cursorline
 
+" '.vimrc' from the current project directory is sourced automatically.
+set exrc
+
+" '.vimrc' that is sourced from `exrc` option has some disabled commands.
+set secure
+
 " Set leader as space character.
 let mapleader = ' '
 
@@ -213,7 +222,7 @@ fun InitFZF()
     :nnoremap <M-x> :Commands<CR>
 
     " Completion is done in floating window at the center of the screen.
-    let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8, 'yoffset': 0.5, 'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+    let g:fzf_layout = { 'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8, 'yoffset': 0.5, 'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
 endfun
 
 :call InitFZF()
@@ -245,6 +254,8 @@ fun InitCOC()
 
     nmap <Leader>r <Nop>
     nmap <Leader>r <Plug>(coc-rename)
+
+    nmap <A-Return> <Plug>(coc-codeaction)
 endfun
 
 :call InitCOC()
@@ -268,8 +279,11 @@ endfun
 
 " Vim-Zettel.
 fun InitVimZettel()
-    let g:zettel_fzf_command = "rg --column --line-number --no-heading --color=always --ignore-case"
+    let g:zettel_fzf_command = 'rg -l --column --line-number --no-heading --color=always --ignore-case'
+    let g:zettel_format = '%y%m%d%H%M %title'
 endfun
+
+:call InitVimZettel()
 
 " -- Languages --
 fun InitPython()
