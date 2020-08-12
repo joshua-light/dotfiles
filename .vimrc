@@ -47,6 +47,9 @@ Plug 'mhinz/vim-startify'
 Plug 'vimwiki/vimwiki'
 Plug 'michal-h21/vim-zettel'
 
+" Brackets are paired automatically.
+Plug 'jiangmiao/auto-pairs'
+
 " -- Languages --
 
 " Latex.
@@ -65,9 +68,6 @@ Plug 'mgedmin/python-imports.vim'
 " C#.
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'OrangeT/vim-csharp'
-
-" Rust.
-Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
@@ -191,10 +191,28 @@ fun InitColors()
     " 24-bit RGB palette is used to display colors.
     set termguicolors
 
-    " Colors are customized.
+    " Default OneDark colors are customized.
     hi ColorColumn guifg=#5c6370
     hi StatusLine guibg=#212429
     hi CursorLine guibg=#23272c
+
+    hi vimVar guifg=#bfd2ff
+    hi vimFuncVar guifg=#bfd2ff
+    hi vimOption guifg=#bfd2ff
+    hi vimHiGroup guifg=#bfd2ff
+    hi vimSynType guifg=#bfd2ff
+
+    hi vimFunction guifg=#dcdcaa
+    hi vimFunc guifg=#dcdcaa
+    hi vimFuncName guifg=#dcdcaa
+    hi vimUserFunc guifg=#dcdcaa
+
+    hi vimHiKeyList guifg=#f92672
+    hi vimContinue guifg=#f92672
+
+    hi vimAutoEvent guifg=#61afef
+
+    hi vimString guifg=#ce9178
 endfun
 
 :call InitColors()
@@ -273,7 +291,9 @@ fun InitAle()
     let g:ale_lint_delay = 50
     let g:ale_lint_on_text_changed = 'always'
 
-    let g:ale_linters = { 'cs': ['OmniSharp'] }
+    let g:ale_linters = { 
+        'cs': ['OmniSharp']
+    }
 endfun
 
 " VimWiki.
@@ -290,6 +310,12 @@ fun InitVimZettel()
 endfun
 
 :call InitVimZettel()
+
+fun InitAutoPairs()
+    let g:AutoPairsShortcutToggle = ''
+endfun
+
+:call InitAutoPairs()
 
 " -- Languages --
 fun InitPython()
@@ -355,12 +381,17 @@ fun InitRust()
       \ | set expandtab
       \ | set autoindent
       \ | set fileformat=unix
-      \ | nmap <Leader>s :RustFmt<CR>
+      \ | let b:ale_linters = []
 
+    " Colors.
     hi rustKeyword guifg=#c678dd
     hi rustStorage guifg=#c678dd
     hi rustType guifg=#c678dd
     hi rustStructure guifg=#c678dd
+    hi rustSigil guifg=#c678dd
+    hi rustAssert guifg=#c678dd
+    hi rustSelf guifg=#c678dd
+    hi rustTypedef guifg=#c678dd
 
     hi rustModPath guifg=#bfd2ff
 
@@ -372,7 +403,9 @@ fun InitRust()
     hi rustStringDelimiter guifg=#ce9178
 
     hi rustIdentifier guifg=#61afef
-
+    hi rustEnumVariant guifg=#61afef
+    hi rustAttribute guifg=#61afef
+    hi rustDerive guifg=#61afef
 endfun
 
 :call InitRust()
