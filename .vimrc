@@ -175,10 +175,20 @@ set secure
 " Set leader as space character.
 let mapleader = ' '
 
-set completeopt+=menuone
-set completeopt+=noinsert
-set completeopt-=longest
-set completeopt-=preview
+fun InitCompletion()
+    set completeopt=menuone,noinsert
+
+    " Closes the preview window after the completion is made.
+    autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+    " Make <Tab> to complete the selected option.
+    inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<Tab>"
+
+    " Make <CR> to complete the selected option.
+    inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+endfun
+
+:call InitCompletion()
 
 " Allows to check syntax highlighting groups under the cursor.
 fun SynStack()
@@ -227,6 +237,16 @@ fun InitColors()
     hi vimAutoEventList guifg=#61afef
 
     hi vimString guifg=#ce9178
+
+    hi Pmenu guibg=#212429
+    hi PmenuSbar guibg=#212429
+    hi PmenuThumb guibg=#323841
+
+    hi ErrorMsg guifg=#ff3333
+    hi SpellBad guifg=#ff3333 gui=underline
+
+    hi WarningMsg guifg=#ffb700
+    hi SpellCap guifg=#ffb700 gui=underline
 endfun
 
 :call InitColors()
@@ -271,15 +291,6 @@ endfun
 :call InitNERDTree()
 
 fun InitCOC()
-    " Closes the preview window after the completion is made.
-    autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-    " Make <Tab> to complete the selected option.
-    inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<Tab>"
-
-    " Make <CR> to complete the selected option.
-    inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-
     " Navigation.
     nmap gd <Nop>
     nmap gd <Plug>(coc-definition)
@@ -395,10 +406,11 @@ fun InitRust()
       \ | set expandtab
       \ | set autoindent
       \ | set fileformat=unix
-      \ | let b:ale_linters = []
+      \ | let b:ale_linters=[]
 
     " Colors.
     hi rustKeyword guifg=#c678dd
+    hi rustDynKeyword guifg=#c678dd
     hi rustStorage guifg=#c678dd
     hi rustType guifg=#c678dd
     hi rustStructure guifg=#c678dd
@@ -406,12 +418,14 @@ fun InitRust()
     hi rustAssert guifg=#c678dd
     hi rustSelf guifg=#c678dd
     hi rustTypedef guifg=#c678dd
+    hi rustBoolean guifg=#c678dd
 
     hi rustModPath guifg=#bfd2ff
 
     hi rustFuncCall guifg=#dcdcaa
     hi rustFuncName guifg=#dcdcaa
     hi rustDecNumber guifg=#dcdcaa
+    hi rustFloat guifg=#dcdcaa
 
     hi rustString guifg=#ce9178
     hi rustStringDelimiter guifg=#ce9178
@@ -420,6 +434,12 @@ fun InitRust()
     hi rustEnumVariant guifg=#61afef
     hi rustAttribute guifg=#61afef
     hi rustDerive guifg=#61afef
+    hi rustTrait guifg=#61afef
+
+    hi rustOperator guifg=#f92672
+    hi rustArrowCharacter guifg=#f92672
+    hi rustQuestionMark guifg=#f92672
+    hi rustModPathSep guifg=#f92672
 endfun
 
 :call InitRust()
