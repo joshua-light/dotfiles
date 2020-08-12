@@ -50,19 +50,20 @@ Plug 'michal-h21/vim-zettel'
 " Brackets are paired automatically.
 Plug 'jiangmiao/auto-pairs'
 
-" -- Languages --
+" Floating terminal is available.
+Plug 'voldikss/vim-floaterm'
 
+" -- Languages --
 " Latex.
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
-" Python.
-" Syntax highlighting.
+" Python - Syntax highlighting.
 Plug 'vim-python/python-syntax'
 
-" Automatic sorting of imports.
+" Python - Automatic sorting of imports.
 Plug 'fisadev/vim-isort'
 
-" Automatic imports.
+" Python - Automatic imports.
 Plug 'mgedmin/python-imports.vim'
 
 " C#.
@@ -179,8 +180,16 @@ set completeopt+=noinsert
 set completeopt-=longest
 set completeopt-=preview
 
+" Allows to check syntax highlighting groups under the cursor.
+fun SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfun
 
-" Colors.
+nmap <Leader>h :call SynStack()<CR>
+
 fun InitColors()
     " Syntax highlighting is on.
     syntax on
@@ -196,21 +205,26 @@ fun InitColors()
     hi StatusLine guibg=#212429
     hi CursorLine guibg=#23272c
 
+    hi vimIsCommand guifg=#c678dd
+
     hi vimVar guifg=#bfd2ff
     hi vimFuncVar guifg=#bfd2ff
     hi vimOption guifg=#bfd2ff
     hi vimHiGroup guifg=#bfd2ff
     hi vimSynType guifg=#bfd2ff
+    hi vimHiGuiFgBg guifg=#bfd2ff
 
     hi vimFunction guifg=#dcdcaa
     hi vimFunc guifg=#dcdcaa
     hi vimFuncName guifg=#dcdcaa
     hi vimUserFunc guifg=#dcdcaa
+    hi vimNumber guifg=#dcdcaa
 
     hi vimHiKeyList guifg=#f92672
     hi vimContinue guifg=#f92672
 
     hi vimAutoEvent guifg=#61afef
+    hi vimAutoEventList guifg=#61afef
 
     hi vimString guifg=#ce9178
 endfun
@@ -219,14 +233,13 @@ endfun
 
 
 " -- Plugins --
-" EasyMotion.
 fun InitEasyMotion()
+    " Jump to the beginning of a word that matches the character.
     map s :call EasyMotion#User('\V\<'.escape(nr2char(getchar()), '\'), 0, 2, 0)<CR>
 endfun
 
 :call InitEasyMotion()
 
-" FZF.
 fun InitFZF()
     fun! RipgrepFzf(query, fullscreen)
         let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
@@ -251,14 +264,12 @@ endfun
 
 :call InitFZF()
 
-" NERDTree.
 fun InitNERDTree() 
     :nnoremap <M-1> :NERDTreeToggle<CR>
 endfun
 
 :call InitNERDTree()
 
-" COC.
 fun InitCOC()
     " Closes the preview window after the completion is made.
     autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -284,7 +295,6 @@ endfun
 
 :call InitCOC()
 
-" Ale.
 fun InitAle()
     let g:ale_lint_on_enter = 0
     let g:ale_lint_on_save = 0
@@ -296,14 +306,12 @@ fun InitAle()
     }
 endfun
 
-" VimWiki.
 fun InitVimWiki()
     let g:vimwiki_list = [{'path': '~/git/JoshuaLight/zettelkasten', 'ext': 'md', 'syntax': 'markdown'}]
 endfun
 
 :call InitVimWiki()
 
-" Vim-Zettel.
 fun InitVimZettel()
     let g:zettel_fzf_command = 'rg -l --column --line-number --no-heading --color=always --ignore-case'
     let g:zettel_format = '%y%m%d%H%M %title'
@@ -316,6 +324,12 @@ fun InitAutoPairs()
 endfun
 
 :call InitAutoPairs()
+
+fun InitFloaterm()
+endfun
+
+:call InitFloaterm()
+
 
 " -- Languages --
 fun InitPython()
@@ -409,16 +423,6 @@ fun InitRust()
 endfun
 
 :call InitRust()
-
-fun SynStack()
-    if !exists("*synstack")
-        return
-    endif
-    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfun
-
-nmap <Leader>h :call SynStack()<CR>
-
 
 " --------------
 " -- Bindings --
