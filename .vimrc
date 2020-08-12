@@ -215,20 +215,25 @@ fun InitColors()
     hi StatusLine guibg=#212429
     hi CursorLine guibg=#23272c
 
-    hi vimIsCommand guifg=#c678dd
+    hi Operator guifg=#bfd2ff
 
-    hi vimVar guifg=#bfd2ff
-    hi vimFuncVar guifg=#bfd2ff
-    hi vimOption guifg=#bfd2ff
-    hi vimHiGroup guifg=#bfd2ff
-    hi vimSynType guifg=#bfd2ff
-    hi vimHiGuiFgBg guifg=#bfd2ff
+    hi Keyword guifg=#c678dd
+    hi link vimIsCommand Keyword
 
-    hi vimFunction guifg=#dcdcaa
-    hi vimFunc guifg=#dcdcaa
-    hi vimFuncName guifg=#dcdcaa
-    hi vimUserFunc guifg=#dcdcaa
-    hi vimNumber guifg=#dcdcaa
+    hi Identifier guifg=#bfd2ff
+    hi link vimVar Identifier
+    hi link vimFuncVar Identifier
+    hi link vimOption Identifier
+    hi link vimHiGroup Identifier
+    hi link vimSynType Identifier
+    hi link vimHiGuiFgBg Identifier
+
+    hi Function guifg=#dcdcaa
+    hi link vimFunction Function
+    hi link vimFunc Function
+    hi link vimFuncName Function
+    hi link vimUserFunc Function
+    hi link vimNumber Function
 
     hi vimHiKeyList guifg=#f92672
     hi vimContinue guifg=#f92672
@@ -396,6 +401,15 @@ fun InitCSharp()
 
     " The following commands are contextual, based on the cursor position.
     autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
+
+    " Colors.
+    hi csModifier guifg=#c678dd
+    hi csTypeDecleration guifg=#c678dd
+    hi csType guifg=#c678dd
+
+    hi csStorage guifg=#bfd2ff
+
+    hi csClass guifg=#61afef
 endfun
 
 :call InitCSharp()
