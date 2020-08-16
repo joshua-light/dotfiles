@@ -215,9 +215,9 @@ fun InitColors()
     hi StatusLine guibg=#212429
     hi CursorLine guibg=#23272c
 
-    hi Operator guifg=#bfd2ff
-
     hi Keyword guifg=#c678dd
+    hi link Boolean Keyword
+    hi link Float Keyword
     hi link vimIsCommand Keyword
 
     hi Identifier guifg=#bfd2ff
@@ -235,23 +235,30 @@ fun InitColors()
     hi link vimUserFunc Function
     hi link vimNumber Function
 
-    hi vimHiKeyList guifg=#f92672
-    hi vimContinue guifg=#f92672
+    hi Operator guifg=#f92672
+    hi link vimHiKeyList Operator
+    hi link vimContinue Operator
 
-    hi vimAutoEvent guifg=#61afef
-    hi vimAutoEventList guifg=#61afef
+    hi Structure guifg=#61afef
+    hi link vimAutoEvent Structure
+    hi link vimAutoEventList Structure
+    hi link vimGroup Structure
 
-    hi vimString guifg=#ce9178
+    hi Character guifg=#ce9178
+    hi link vimString Character
 
+    hi Error guifg=#ff3333
+    hi link ErrorMsg Error
+    hi link SpellBad Error
+
+    hi Warning guifg=#ffb700
+    hi link WarningMsg Warning
+    hi link SpellCap Warning
+
+    " Autocompletion popup.
     hi Pmenu guibg=#212429
     hi PmenuSbar guibg=#212429
     hi PmenuThumb guibg=#323841
-
-    hi ErrorMsg guifg=#ff3333
-    hi SpellBad guifg=#ff3333 gui=underline
-
-    hi WarningMsg guifg=#ffb700
-    hi SpellCap guifg=#ffb700 gui=underline
 endfun
 
 :call InitColors()
@@ -284,7 +291,7 @@ fun InitFZF()
     :nnoremap <M-x> :Commands<CR>
 
     " Completion is done in floating window at the center of the screen.
-    let g:fzf_layout = { 'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8, 'yoffset': 0.5, 'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+    let g:fzf_layout = { 'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8, 'yoffset': 0.5, 'xoffset': 0.5, 'highlight': 'VertSplit', 'border': 'sharp' } }
 endfun
 
 :call InitFZF()
@@ -403,13 +410,13 @@ fun InitCSharp()
     autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
 
     " Colors.
-    hi csModifier guifg=#c678dd
-    hi csTypeDecleration guifg=#c678dd
-    hi csType guifg=#c678dd
+    hi link csModifier Keyword
+    hi link csTypeDecleration Keyword
+    hi link csType Keyword
 
-    hi csStorage guifg=#bfd2ff
+    hi link csStorage Identifier
 
-    hi csClass guifg=#61afef
+    hi link csClass Structure
 endfun
 
 :call InitCSharp()
@@ -425,37 +432,37 @@ fun InitRust()
       \ | let b:ale_linters=[]
 
     " Colors.
-    hi rustKeyword guifg=#c678dd
-    hi rustDynKeyword guifg=#c678dd
-    hi rustStorage guifg=#c678dd
-    hi rustType guifg=#c678dd
-    hi rustStructure guifg=#c678dd
-    hi rustSigil guifg=#c678dd
-    hi rustAssert guifg=#c678dd
-    hi rustSelf guifg=#c678dd
-    hi rustTypedef guifg=#c678dd
-    hi rustBoolean guifg=#c678dd
+    hi link rustKeyword Keyword
+    hi link rustDynKeyword Keyword
+    hi link rustStorage Keyword
+    hi link rustType Keyword
+    hi link rustStructure Keyword
+    hi link rustSigil Keyword
+    hi link rustAssert Keyword
+    hi link rustSelf Keyword
+    hi link rustTypedef Keyword
+    hi link rustBoolean Keyword
 
-    hi rustModPath guifg=#bfd2ff
+    hi link rustModPath Identifier
 
-    hi rustFuncCall guifg=#dcdcaa
-    hi rustFuncName guifg=#dcdcaa
-    hi rustDecNumber guifg=#dcdcaa
-    hi rustFloat guifg=#dcdcaa
+    hi link rustFuncCall Function
+    hi link rustFuncName Function
+    hi link rustDecNumber Function
+    hi link rustFloat Function
 
-    hi rustString guifg=#ce9178
-    hi rustStringDelimiter guifg=#ce9178
+    hi link rustString String
+    hi link rustStringDelimiter String
 
-    hi rustIdentifier guifg=#61afef
-    hi rustEnumVariant guifg=#61afef
-    hi rustAttribute guifg=#61afef
-    hi rustDerive guifg=#61afef
-    hi rustTrait guifg=#61afef
+    hi link rustIdentifier Structure
+    hi link rustEnumVariant Structure
+    hi link rustAttribute Structure
+    hi link rustDerive Structure
+    hi link rustTrait Structure
 
-    hi rustOperator guifg=#f92672
-    hi rustArrowCharacter guifg=#f92672
-    hi rustQuestionMark guifg=#f92672
-    hi rustModPathSep guifg=#f92672
+    hi link rustOperator Operator
+    hi link rustArrowCharacter Operator
+    hi link rustQuestionMark Operator
+    hi link rustModPathSep Operator
 endfun
 
 :call InitRust()
