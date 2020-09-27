@@ -70,6 +70,9 @@ Plug 'mgedmin/python-imports.vim'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'OrangeT/vim-csharp'
 
+" Rust.
+Plug 'rust-lang/rust.vim'
+
 call plug#end()
 
 
@@ -430,6 +433,9 @@ fun InitRust()
       \ | set autoindent
       \ | set fileformat=unix
       \ | let b:ale_linters=[]
+      \ | nmap <Leader>s :RustFmt<CR>
+
+    :nnoremap <Leader>; mzA;<Esc>`z
 
     " Colors.
     hi link rustKeyword Keyword
