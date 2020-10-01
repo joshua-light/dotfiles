@@ -210,6 +210,9 @@ fun! InitColors()
     " 24-bit RGB palette is used to display colors.
     set termguicolors
 
+    " A highlight group for black color.
+    hi Black guifg=#000000 guibg=#000000
+
     " Default OneDark colors are customized.
     hi Normal guifg=#abb2bf guibg=#2d2f36
     hi ColorColumn guifg=#5c6370
@@ -293,7 +296,7 @@ fun! InitFZF()
 
     " Completion is done in floating window at the center of the screen.
     let g:fzf_layout = { 'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8, 'yoffset': 0.5, 'xoffset': 0.5, 'highlight': 'VertSplit', 'border': 'sharp' } }
-    let g:fzf_colors = { 'bg+': ['bg', 'Pmenu'], 'hl+': ['bg', 'Cursor'], 'info': ['fg', 'Function'], 'prompt': ['fg', 'Keyword'], 'pointer': ['fg', 'Operator'] }
+    let g:fzf_colors = { 'bg+': ['bg', 'Pmenu'], 'hl+': ['bg', 'Cursor'], 'info': ['fg', 'Function'], 'prompt': ['fg', 'Keyword'], 'pointer': ['fg', 'Operator'], 'border': ['bg', 'CursorLine'] }
 endfun
 
 :call InitFZF()
