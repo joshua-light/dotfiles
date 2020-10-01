@@ -160,9 +160,6 @@ set tabstop=4
 " The indentation level is equal to 4 spaces.
 set shiftwidth=4
 
-" Draws a line at 80 column.
-set colorcolumn=80
-
 " Messages are not shown at last line when in Insert, Visual or Replace modes.
 set noshowmode
 
@@ -178,7 +175,7 @@ set secure
 " Set leader as space character.
 let mapleader = ' '
 
-fun InitCompletion()
+fun! InitCompletion()
     set completeopt=menuone,noinsert
 
     " Closes the preview window after the completion is made.
@@ -194,7 +191,7 @@ endfun
 :call InitCompletion()
 
 " Allows to check syntax highlighting groups under the cursor.
-fun SynStack()
+fun! SynStack()
     if !exists("*synstack")
         return
     endif
@@ -203,7 +200,7 @@ endfun
 
 nmap <Leader>h :call SynStack()<CR>
 
-fun InitColors()
+fun! InitColors()
     " Syntax highlighting is on.
     syntax on
 
@@ -214,8 +211,9 @@ fun InitColors()
     set termguicolors
 
     " Default OneDark colors are customized.
+    hi Normal guifg=#abb2bf guibg=#2d2f36
     hi ColorColumn guifg=#5c6370
-    hi StatusLine guibg=#212429
+    hi StatusLine guibg=#26292e
     hi CursorLine guibg=#23272c
 
     hi Keyword guifg=#c678dd
@@ -268,14 +266,14 @@ endfun
 
 
 " -- Plugins --
-fun InitEasyMotion()
+fun! InitEasyMotion()
     " Jump to the beginning of a word that matches the character.
     map s :call EasyMotion#User('\V\<'.escape(nr2char(getchar()), '\'), 0, 2, 0)<CR>
 endfun
 
 :call InitEasyMotion()
 
-fun InitFZF()
+fun! InitFZF()
     fun! RipgrepFzf(query, fullscreen)
         let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
         let initial_command = printf(command_fmt, shellescape(a:query))
@@ -295,17 +293,18 @@ fun InitFZF()
 
     " Completion is done in floating window at the center of the screen.
     let g:fzf_layout = { 'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8, 'yoffset': 0.5, 'xoffset': 0.5, 'highlight': 'VertSplit', 'border': 'sharp' } }
+    let g:fzf_colors = { 'bg+': ['bg', 'Pmenu'], 'hl+': ['bg', 'Cursor'], 'info': ['fg', 'Function'], 'prompt': ['fg', 'Keyword'], 'pointer': ['fg', 'Operator'] }
 endfun
 
 :call InitFZF()
 
-fun InitNERDTree() 
+fun! InitNERDTree() 
     :nnoremap <M-1> :NERDTreeToggle<CR>
 endfun
 
 :call InitNERDTree()
 
-fun InitCOC()
+fun! InitCOC()
     " Navigation.
     nmap gd <Nop>
     nmap gd <Plug>(coc-definition)
@@ -321,7 +320,7 @@ endfun
 
 :call InitCOC()
 
-fun InitAle()
+fun! InitAle()
     let g:ale_lint_on_enter = 0
     let g:ale_lint_on_save = 0
     let g:ale_lint_delay = 50
@@ -332,7 +331,7 @@ fun InitAle()
     }
 endfun
 
-fun InitVimWiki()
+fun! InitVimWiki()
     let g:vimwiki_list = [{'path': '~/git/JoshuaLight/zettelkasten', 'ext': 'md', 'syntax': 'markdown'}]
 
     hi VimwikiCode guibg=#212429 guifg=#c678dd
@@ -340,27 +339,27 @@ endfun
 
 :call InitVimWiki()
 
-fun InitVimZettel()
+fun! InitVimZettel()
     let g:zettel_fzf_command = 'rg -l --column --line-number --no-heading --color=always --ignore-case'
     let g:zettel_format = '%y%m%d%H%M %title'
 endfun
 
 :call InitVimZettel()
 
-fun InitAutoPairs()
+fun! InitAutoPairs()
     let g:AutoPairsShortcutToggle = ''
 endfun
 
 :call InitAutoPairs()
 
-fun InitFloaterm()
+fun! InitFloaterm()
 endfun
 
 :call InitFloaterm()
 
 
 " -- Languages --
-fun InitPython()
+fun! InitPython()
     let g:python_highlight_all = 1
     let g:kite_tab_complete = 1
 
@@ -377,24 +376,23 @@ fun InitPython()
       \ | nmap <Leader>s :call CleanUp()<CR>
       \ | nmap <Leader>i :call Import()<CR>
 
-    fun CleanUp()
+    fun! CleanUp()
         let cursor_position = getpos('.')
         exec 'Isort'
         call setpos('.', cursor_position)
     endfun
 
-    fun Import()
+    fun! Import()
         let cursor_position = getpos('.')
         exec 'ImportName'
         exec 'Isort'
         call setpos('.', cursor_position)
     endfun
-
-    endfun
+endfun
 
 :call InitPython()
 
-fun InitCSharp()
+fun! InitCSharp()
     " stdio Roslyn server is used (instead of HTTP).
     let g:OmniSharp_server_stdio = 1
 
@@ -424,7 +422,7 @@ endfun
 
 :call InitCSharp()
 
-fun InitRust()
+fun! InitRust()
     autocmd BufNewFile,BufRead *.rs
       \   set tabstop=4
       \ | set softtabstop=4
