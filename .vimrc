@@ -289,7 +289,7 @@ fun! InitFZF()
     command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
     :nnoremap <M-p> <Nop>
-    :nnoremap <M-p> :GFiles<CR>
+    :nnoremap <M-p> :Files<CR>
 
     :nnoremap <M-x> <Nop>
     :nnoremap <M-x> :Commands<CR>
