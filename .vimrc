@@ -338,6 +338,10 @@ fun! InitVimWiki()
     let g:vimwiki_list = [{'path': '~/git/JoshuaLight/zettelkasten', 'ext': 'md', 'syntax': 'markdown'}]
 
     hi VimwikiCode guibg=#212429 guifg=#c678dd
+    hi link VimwikiHeader1 Function
+    hi link VimwikiHeader2 Function
+    hi link VimwikiHeader3 Function
+    hi link VimwikiHeaderChar Operator
 endfun
 
 :call InitVimWiki()
