@@ -286,7 +286,7 @@ fun! InitFZF()
     endfun
 
     fun! RipgrepFiles(query, fullscreen)
-        call fzf#vim#grep('rg --files --hidden --glob "!.git"', 1, fzf#vim#with_preview(), a:fullscreen)
+        call fzf#run(fzf#wrap({'source': 'rg --files --hidden --glob "!.git"'}))
     endfun
 
     " An interactive fuzzy search with RG command.
