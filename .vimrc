@@ -308,6 +308,8 @@ endfun
 
 fun! InitNERDTree() 
     :nnoremap <M-1> :NERDTreeToggle<CR>
+
+    let g:NERDTreeShowHidden = 1
 endfun
 
 :call InitNERDTree()
