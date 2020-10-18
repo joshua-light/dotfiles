@@ -516,3 +516,4 @@ nnoremap <A-g> :Gstatus<CR>
 nnoremap <C-k> :Gcommit<CR>
 nmap <C-p> <Nop>
 nnoremap <C-p> :Gpush<CR>
+nnoremap <C-j> :Git rebase<CR>
