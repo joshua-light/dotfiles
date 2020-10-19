@@ -301,7 +301,7 @@ fun! InitFZF()
 
     " Completion is done in floating window at the center of the screen.
     let g:fzf_layout = { 'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8, 'yoffset': 0.5, 'xoffset': 0.5, 'highlight': 'VertSplit', 'border': 'sharp' } }
-    let g:fzf_colors = { 'bg+': ['bg', 'Pmenu'], 'hl+': ['bg', 'Cursor'], 'info': ['fg', 'Function'], 'prompt': ['fg', 'Keyword'], 'pointer': ['fg', 'Operator'], 'border': ['bg', 'CursorLine'] }
+    let g:fzf_colors = { 'bg+': ['bg', 'Pmenu'], 'hl+': ['bg', 'Cursor'], 'info': ['fg', 'Function'], 'prompt': ['fg', 'Keyword'], 'pointer': ['fg', 'Operator'], 'border': ['bg', 'CursorLine'], 'hl': ['bg', 'Cursor'] }
 endfun
 
 :call InitFZF()
