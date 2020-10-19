@@ -497,7 +497,8 @@ endfun
 :nnoremap <C-x><C-c> :qa!<CR>
 
 " Use 0 as ^.
-map 0 ^
+:noremap 0 ^
+:noremap ^ 0
 
 " Use jj to escape Insert mode.
 imap jj <Esc>
