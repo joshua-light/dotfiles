@@ -1,0 +1,64 @@
+{
+    "suggest.noselect": false,
+    "python.jediEnabled": false,
+
+    "list.insertMappings": {
+        "<C-c>": "do:exit"
+    },
+
+    "languageserver": {
+        "haskell": {
+            "command": "hie-wrapper",
+            "args": ["--lsp"],
+            "rootPatterns": [
+              "stack.yaml",
+              "cabal.config",
+              "package.yaml"
+            ],
+            "filetypes": [
+              "hs",
+              "lhs",
+              "haskell"
+            ],
+            "initializationOptions": {
+              "languageServerHaskell": {
+                "hlintOn": true
+              }
+            }
+        },
+        "ccls": {
+            "command": "ccls",
+            "rootPatterns": [
+                ".ccls",
+                ".git/"
+            ],
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
+        }
+    },
+
+    "rust-analyzer": {
+        "diagnostics": {
+            "enableExperimental": false,
+            "displayByAle": true
+        },
+        "inlayHints": {
+            "chainingHints": false
+        },
+        "completion": {
+            "addCallArgumentSnippets": false
+        },
+        "featureFlags": {
+            "lsp.diagnostics": false
+        }
+    }
+}
