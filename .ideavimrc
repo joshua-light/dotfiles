@@ -1,0 +1,38 @@
+" -------------
+" -- General --
+" -------------
+" Searching with `/` highlights results as you type.
+set incsearch
+
+" Screen flashing instead of sounds for errors is enabled (only to disable it
+" later).
+set visualbell
+
+" Screen flashing is disabled at a terminal level.
+set t_vb=
+
+" Set leader as space character.
+let mapleader = ' '
+
+" --------------
+" -- Bindings --
+" --------------
+" Use 0 as ^.
+:noremap 0 ^
+:noremap ^ 0
+
+" Use jj to escape Insert mode.
+imap jj <Esc>
+
+" Make sure <C-c> behaves as <Esc> (it helps with autoclosing windows).
+imap <C-c> <Esc>
+
+" Tabs.
+:nnoremap J gT
+:nnoremap K gt
+
+" Jump to the beginning of a word that matches the character.
+:nnoremap s :action emacsIDEAs.AceJumpWord<cr>
+
+" Put a `;` character at the end of the line.
+:nnoremap <Leader>; mzA;<Esc>`z
