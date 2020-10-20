@@ -6,3 +6,4 @@ _My dotfiles for different applications._
 - `.vimrc`: `~/.config/nvim/init.vim` (NeoVim)
 - `coc-settings.json`: `~/.config/nvim/coc-settings.json` (NeoVim)
 - `config.fish`: `~/.config/fish/config.fish`
+- `.ideavimrc`: `~/.ideavimrc`.
