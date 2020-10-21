@@ -10,7 +10,7 @@ These links should be created (for example, with `ln -s ~/dev/self/dotfiles/SOUR
 - `.ideavimrc`: `~/.ideavimrc`
 
 ## Directories
-These directories should exist:
+These directories should be created (for example, with `mkdir ~/.vim/backup`):
 - `~/.vim/swap`
 - `~/.vim/backup`
 - `~/.vim/undo`
