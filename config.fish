@@ -27,4 +27,5 @@ alias gf="git fetch --prune"
 alias gbr="git checkout -b "
 
 # Apps.
+alias vim="nvim"
 alias v="nvim ."
