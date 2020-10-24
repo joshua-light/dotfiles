@@ -441,6 +441,9 @@ endfun
 :call InitCSharp()
 
 fun! InitRust()
+    let g:rustfmt_autosave = 1
+    let g:rustfmt_emit_files = 1
+
     autocmd BufNewFile,BufRead *.rs
       \   set tabstop=4
       \ | set softtabstop=4
