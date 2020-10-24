@@ -18,6 +18,9 @@ Plug 'ryanoasis/vim-devicons'
 " More flexible search motions.
 Plug 'easymotion/vim-easymotion'
 
+" Yanks are highlighted.
+Plug 'machakann/vim-highlightedyank'
+
 " Highlights after incremental search are turned off automatically.
 Plug 'haya14busa/is.vim'
 
