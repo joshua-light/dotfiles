@@ -343,6 +343,7 @@ endfun
 
 fun! InitVimWiki()
     let g:vimwiki_list = [{'path': '~/git/JoshuaLight/zettelkasten', 'ext': 'md', 'syntax': 'markdown'}]
+    let g:vimwiki_table_mappings = 0
 
     hi VimwikiCode guibg=#212429 guifg=#c678dd
     hi link VimwikiHeader1 Function
