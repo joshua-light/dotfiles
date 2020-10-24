@@ -8,6 +8,7 @@ These links should be created (for example, with `ln -s ~/dev/self/dotfiles/SOUR
 - `coc-settings.json`: `~/.config/nvim/coc-settings.json` (NeoVim)
 - `config.fish`: `~/.config/fish/config.fish`
 - `.ideavimrc`: `~/.ideavimrc`
+- `i3/config`: `~/.config/i3/config`
 
 ## Directories
 These directories should be created (for example, with `mkdir ~/.vim/backup`):
