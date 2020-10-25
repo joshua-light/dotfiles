@@ -48,6 +48,10 @@ gaps outer 8
 # title bar is turned off
 new_window pixel 2
 
+# borders are dark gray
+client.focused #000000 #285577 #FFFFFF #2E9EF4 #333333
+client.unfocused #333333 #222222 #888888 #292D2E #111111
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
