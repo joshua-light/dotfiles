@@ -40,9 +40,13 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# gaps
 smart_gaps on
 gaps inner 8
 gaps outer 8
+
+# title bar is turned off
+new_window pixel 2
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
