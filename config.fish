@@ -62,3 +62,20 @@ function fish_prompt
 
     set_color normal
 end
+
+# Customized colors.
+set fish_color_normal bbbbbb
+set fish_color_command c678dd --bold
+set fish_color_quote ce9178
+set fish_color_redirection c678dd
+set fish_color_end f92672
+set fish_color_error ff3333 --bold
+set fish_color_param bce2fe
+set fish_color_comment 636872
+set fish_color_match 61afef
+set fish_color_selection 3f4450
+set fish_color_search_match dcdcaa
+set fish_color_operator f92672
+set fish_color_escape f92672
+set fish_color_escape d19a66
+set fish_color_cancel 7f848e
