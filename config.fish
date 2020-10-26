@@ -42,7 +42,7 @@ function fish_prompt
 
     # Hostname.
     set_color dcdcaa
-    echo -n (hostname)
+    echo -n (prompt_hostname)
 
     echo -n " "
 
