@@ -29,3 +29,36 @@ alias gbr="git checkout -b "
 # Apps.
 alias vim="nvim"
 alias v="nvim ."
+
+# Customized prompt.
+function fish_prompt
+    # Username.
+    set_color c678dd
+    echo -n (whoami)
+
+    # `@` character.
+    set_color f92672
+    echo -n "@"
+
+    # Hostname.
+    set_color dcdcaa
+    echo -n (hostname)
+
+    echo -n " "
+
+    # Current dir.
+    set_color 636872
+    echo -n "["
+    echo -n (prompt_pwd)
+    echo -n "]"
+
+    echo -n " "
+
+    # `>` character.
+    set_color f92672
+    echo -n ">"
+
+    echo -n " "
+
+    set_color normal
+end
