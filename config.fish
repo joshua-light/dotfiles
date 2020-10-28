@@ -70,7 +70,7 @@ set fish_color_quote ce9178
 set fish_color_redirection c678dd
 set fish_color_end f92672
 set fish_color_error ff3333 --bold
-set fish_color_param bce2fe
+set fish_color_param dcdcaa
 set fish_color_comment 636872
 set fish_color_match 61afef
 set fish_color_selection 3f4450
