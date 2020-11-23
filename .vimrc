@@ -60,6 +60,10 @@ Plug 'voldikss/vim-floaterm'
 " Latex.
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
+" Markdown.
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 " Python - Syntax highlighting.
 Plug 'vim-python/python-syntax'
 
@@ -298,6 +302,9 @@ fun! InitFZF()
 
     :nnoremap <M-p> <Nop>
     :nnoremap <M-p> :RGFiles<CR>
+
+    :nnoremap <M-f> <Nop>
+    :nnoremap <M-f> :Rg<CR>
 
     :nnoremap <M-x> <Nop>
     :nnoremap <M-x> :Commands<CR>
