@@ -105,6 +105,7 @@ bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+z resize set width 1920 px height 1080 px
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
