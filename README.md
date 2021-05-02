@@ -17,6 +17,6 @@ These directories should be created (for example, with `mkdir DIRECTORY`):
 - `~/.vim/undo`
 
 ## Python Packages
-These packages should be installed (for example, with `pip3 install PACKAGE`):
+These packages should be installed and upgraded (for example, with `pip3 install PACKAGE`):
 - `pynvim`
 - `isort`
