@@ -387,6 +387,7 @@ endfun
 fun! InitPython()
     let g:python_highlight_all = 1
     let g:kite_tab_complete = 1
+    let g:vim_isort_python_version = 'python3'
 
     let NERDTreeIgnore=['\.pyc$', '\~$']
 
@@ -527,8 +528,8 @@ nnoremap <A-w> :q<CR>
 nnoremap <A-;> :!!<CR>
 
 " Git.
-nnoremap <A-g> :Gstatus<CR>
-nnoremap <C-k> :Gcommit<CR>
+nnoremap <A-g> :Git<CR>
+nnoremap <C-k> :Git commit<CR>
 nmap <C-p> <Nop>
-nnoremap <C-p> :Gpush<CR>
+nnoremap <C-p> :Git push<CR>
 nnoremap <C-j> :Git pull --rebase<CR>
