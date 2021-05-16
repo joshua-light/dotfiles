@@ -500,6 +500,14 @@ endfun
 
 :call InitRust()
 
+fun! InitElm()
+    autocmd BufNewFile,BufRead *.elm
+      \   set filetype=elm
+
+endfun
+
+:call InitElm()
+
 " --------------
 " -- Bindings --
 " --------------

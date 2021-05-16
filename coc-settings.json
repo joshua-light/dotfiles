@@ -1,4 +1,7 @@
 {
+    "coc.preferences.formatOnSaveFiletypes": [
+        "elm"
+     ],
     "suggest.noselect": false,
     "python.jediEnabled": false,
 
@@ -43,6 +46,16 @@
                     "directory": "/tmp/ccls"
                 }
             }
+        },
+        "elmLS": {
+            "command": "elm-language-server",
+            "filetypes": ["elm"],
+            "trace.server": "verbose",
+            "rootPatterns": ["elm.json"],
+            "initializationOptions": {
+                "disableElmLSDiagnostics": true,
+                "skipInstallPackageConfirmation": false
+            } 
         }
     },
 
