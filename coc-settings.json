@@ -65,6 +65,7 @@
             "displayByAle": true
         },
         "inlayHints": {
+            "enable": false,
             "chainingHints": false
         },
         "completion": {
