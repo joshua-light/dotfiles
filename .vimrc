@@ -80,6 +80,9 @@ Plug 'OrangeT/vim-csharp'
 " Rust.
 Plug 'rust-lang/rust.vim'
 
+" LaTeX.
+Plug 'lervag/vimtex'
+
 call plug#end()
 
 
@@ -507,6 +510,17 @@ fun! InitElm()
 endfun
 
 :call InitElm()
+
+fun! InitLatex()
+    let g:tex_flavor = 'latex'
+    let g:tex_conceal = 'abdmg'
+    let g:vimtex_view_method = 'skim'
+    let g:vimtex_quickfix_mode = 0
+
+    set conceallevel=1
+endfun
+
+:call InitLatex()
 
 " --------------
 " -- Bindings --
