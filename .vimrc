@@ -185,6 +185,10 @@ set secure
 " Set leader as space character.
 let mapleader = ' '
 
+filetype indent plugin on
+
+syntax enable
+
 fun! InitCompletion()
     set completeopt=menuone,noinsert
 
@@ -332,13 +336,59 @@ fun! InitCOC()
     nmap gd <Nop>
     nmap gd <Plug>(coc-definition)
 
+    nmap gy <Nop>
+    nmap gy <Plug>(coc-type-definition)
+
+    nmap gi <Nop>
+    nmap gi <Plug>(coc-implementation)
+
     nmap gr <Nop>
     nmap gr <Plug>(coc-references)
 
+    " Map function and class text objects.
+    " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+    xmap if <Plug>(coc-funcobj-i)
+    omap if <Plug>(coc-funcobj-i)
+    xmap af <Plug>(coc-funcobj-a)
+    omap af <Plug>(coc-funcobj-a)
+    xmap ic <Plug>(coc-classobj-i)
+    omap ic <Plug>(coc-classobj-i)
+    xmap ac <Plug>(coc-classobj-a)
+    omap ac <Plug>(coc-classobj-a)
+
+    " Diagnostics.
+    nmap g[ <Nop>
+    nmap g[ <Plug>(coc-diagnostic-prev)
+
+    nmap g] <Nop>
+    nmap g] <Plug>(coc-diagnostic-next)
+
+    " Refactoring.
     nmap <Leader>r <Nop>
     nmap <Leader>r <Plug>(coc-rename)
 
+    " Formatting selected code.
+    xmap <leader>f  <Plug>(coc-format-selected)
+    nmap <leader>f  <Plug>(coc-format-selected)
+
+    " Use Alt+Enter to open actions popup.
     nmap <A-Return> <Plug>(coc-codeaction)
+
+    " Use K to show documentation in preview window.
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+    function! s:show_documentation()
+      if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+      elseif (coc#rpc#ready())
+        call CocActionAsync('doHover')
+      else
+        execute '!' . &keywordprg . " " . expand('<cword>')
+      endif
+    endfunction
+    "
+    " Highlight the symbol and its references when holding the cursor.
+    autocmd CursorHold * silent call CocActionAsync('highlight')
 endfun
 
 :call InitCOC()
@@ -350,9 +400,11 @@ fun! InitAle()
     let g:ale_lint_on_text_changed = 'always'
 
     let g:ale_linters = { 
-        'cs': ['OmniSharp']
-    }
+    \ 'cs': ['OmniSharp']
+    \ }
 endfun
+
+:call InitAle()
 
 fun! InitVimWiki()
     let g:vimwiki_list = [{'path': '~/git/JoshuaLight/zettelkasten', 'ext': 'md', 'syntax': 'markdown'}]
@@ -425,19 +477,34 @@ fun! InitCSharp()
     " stdio Roslyn server is used (instead of HTTP).
     let g:OmniSharp_server_stdio = 1
 
+    " Highlight as you type.
+    let g:OmniSharp_highlighting = 3
+
     " Semantic highlighting is turned on.
     let g:OmniSharp_highlight_types = 3
 
-    " Mono is used as CSharp backend.
-    let g:OmniSharp_server_use_mono = 1
+    " fzf is used as selector UI.
+    let g:OmniSharp_selector_ui = 'fzf'
+    let g:OmniSharp_selector_findusages = 'fzf'
 
     " Show type information automatically when the cursor stops moving.
     " Note that the type is echoed to the Vim command line, and will overwrite
     " any other messages in this space including e.g. ALE linting messages.
-    autocmd CursorHold *.cs OmniSharpTypeLookup
+    "
+    " Update: Turned this off, cause command line wasn't working at all.
+    " autocmd CursorHold *.cs OmniSharpTypeLookup
 
-    " The following commands are contextual, based on the cursor position.
+    autocmd FileType cs nmap <silent> <buffer> <Leader>f <Plug>(omnisharp_code_format)
     autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
+
+    autocmd BufWritePre *.cs call OmniSharp#actions#format#Format()
+
+    autocmd BufNewFile,BufRead *.cs
+      \   set tabstop=2
+      \ | set softtabstop=2
+      \ | set shiftwidth=2
+      \ | set expandtab
+      \ | set autoindent
 
     " Colors.
     hi link csModifier Keyword
