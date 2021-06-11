@@ -16,7 +16,9 @@ These directories should be created (for example, with `mkdir DIRECTORY`):
 - `~/.vim/backup`
 - `~/.vim/undo`
 
-## Python Packages
+## Python packages
 These packages should be installed and upgraded (for example, with `pip3 install PACKAGE`):
 - `pynvim`
 - `isort`
+
+_Note that this should also be done inside a `virtualenv`._
