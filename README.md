@@ -1,24 +1,34 @@
 # dotfiles
 _My dotfiles for different applications._
 
-## Links
-These links should be created (for example, with `ln -s ~/dev/self/dotfiles/SOURCE ~/TARGET`):
-- `.alacritty.yml`: `~/.alacritty.yml`
-- `.vimrc`: `~/.config/nvim/init.vim` (NeoVim)
-- `coc-settings.json`: `~/.config/nvim/coc-settings.json` (NeoVim)
-- `config.fish`: `~/.config/fish/config.fish`
-- `.ideavimrc`: `~/.ideavimrc`
-- `i3/config`: `~/.config/i3/config`
+## Fonts
+- `JetBrainsMono Nerd Font` ([Arch](https://aur.archlinux.org/packages/nerd-fonts-jetbrains-mono/))
+- `Iosevka Nerd Font` ([Arch](https://aur.archlinux.org/packages/nerd-fonts-iosevka/))
 
-## Directories
-These directories should be created (for example, with `mkdir DIRECTORY`):
-- `~/.vim/swap`
-- `~/.vim/backup`
-- `~/.vim/undo`
+## i3
+- `ln -s $DOTFILES$/i3/config ~/.config/i3/config`
 
-## Python packages
-These packages should be installed and upgraded (for example, with `pip3 install PACKAGE`):
-- `pynvim`
-- `isort`
+## fish
+- `ln -s $DOTFILES$/config.fish ~/.config/fish/config.fish`
 
-_Note that this should also be done inside a `virtualenv`._
+## Rofi
+- _Nothing special_
+
+## Polybar
+- Install [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) icon theme
+- Install [polybar-themes](https://github.com/adi1090x/polybar-themes)
+- `ln -s $DOTFILES$/polybar/forest ~/.config/polybar/forest`
+
+## Alacritty
+- `ln -s $DOTFILES$/alacritty.yml ~/.alacritty.yml`
+
+## Vim
+- `ln -s $DOTFILES$/.vimrc ~/.config/nvim/init.vim` (NeoVim)
+- `ln -s $DOTFILES$/coc-settings.json ~/.config/nvim/coc-settings.json` (NeoVim)
+- `mkdir ~/.vim/swap`
+- `mkdir ~/.vim/backup`
+- `mkdir ~/.vim/undo`
+- `pip3 install pynvim`
+- `pip3 install isort`
+
+_Note that Python packages should also be installed inside a `virtualenv`._
