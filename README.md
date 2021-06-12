@@ -28,11 +28,11 @@ _My dotfiles for different applications._
 - `pip3 install pynvim`
 - `pip3 install isort`
 
+_Note that Python packages should also be installed inside a `virtualenv`._
+
 ## Rofi
 - _Nothing special_
 
 ## Screenshots
 - [`shotgun`](https://github.com/neXromancers/shotgun)
 - [`slop`](https://github.com/naelstrof/slop)
-
-_Note that Python packages should also be installed inside a `virtualenv`._
