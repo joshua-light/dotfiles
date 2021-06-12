@@ -31,7 +31,8 @@ _My dotfiles for different applications._
 ## Rofi
 - _Nothing special_
 
-## Flameshot
-- _Nothing special_
+## Screenshots
+- [`shotgun`](https://github.com/neXromancers/shotgun)
+- [`slop`](https://github.com/naelstrof/slop)
 
 _Note that Python packages should also be installed inside a `virtualenv`._

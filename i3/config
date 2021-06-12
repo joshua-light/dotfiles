@@ -162,6 +162,9 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+d exec rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/forest/scripts/rofi/launcher.rasi
 bindsym $mod+s exec ~/.config/polybar/forest/scripts/powermenu.sh
 
+# Screenshot
+bindsym $mod+Shift+s exec shotgun $(slop -f "-i %i -g %g") - | xclip -t 'image/png' -selection clipboard
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
