@@ -11,9 +11,6 @@ _My dotfiles for different applications._
 ## fish
 - `ln -s $DOTFILES$/config.fish ~/.config/fish/config.fish`
 
-## Rofi
-- _Nothing special_
-
 ## Polybar
 - Install [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) icon theme
 - Install [polybar-themes](https://github.com/adi1090x/polybar-themes)
@@ -30,5 +27,11 @@ _My dotfiles for different applications._
 - `mkdir ~/.vim/undo`
 - `pip3 install pynvim`
 - `pip3 install isort`
+
+## Rofi
+- _Nothing special_
+
+## Flameshot
+- _Nothing special_
 
 _Note that Python packages should also be installed inside a `virtualenv`._
