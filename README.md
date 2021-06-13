@@ -8,6 +8,9 @@ _My dotfiles for different applications._
 ## i3
 - `ln -s $DOTFILES$/i3/config ~/.config/i3/config`
 
+## Picom
+- `ln -s $DOTFILES$/picom.conf ~/.config/picom.conf`
+
 ## fish
 - `ln -s $DOTFILES$/config.fish ~/.config/fish/config.fish`
 
