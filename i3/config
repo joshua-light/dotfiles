@@ -193,4 +193,4 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Start Polybar.
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh --forest
