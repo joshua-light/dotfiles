@@ -30,9 +30,12 @@ _My dotfiles for different applications._
 
 _Note that Python packages should also be installed inside a `virtualenv`._
 
-## Rofi
-- _Nothing special_
-
 ## Screenshots
 - [`shotgun`](https://github.com/neXromancers/shotgun)
 - [`slop`](https://github.com/naelstrof/slop)
+
+## Rofi
+- _Nothing special_
+
+## Picom
+- _Nothing special_

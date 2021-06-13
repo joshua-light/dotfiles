@@ -192,5 +192,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start Polybar.
+# Autostart.
+
+# Compositor.
+exec_always --no-startup-id "killall -q picom; picom -f --backend glx"
+
+# Polybar.
 exec_always --no-startup-id ~/.config/polybar/launch.sh --forest
