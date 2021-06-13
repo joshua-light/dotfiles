@@ -195,7 +195,7 @@ bindsym $mod+r mode "resize"
 # Autostart.
 
 # Compositor.
-exec_always --no-startup-id "killall -q picom; picom -f --backend glx"
+exec_always --no-startup-id "killall -q picom; picom -f --experimental-backends"
 
 # Polybar.
 exec_always --no-startup-id ~/.config/polybar/launch.sh --forest
