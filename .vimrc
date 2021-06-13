@@ -229,6 +229,7 @@ fun! InitColors()
 
     " Default OneDark colors are customized.
     hi Normal guifg=#abb2bf guibg=#2d2f36
+    hi White guifg=#abb2bf
     hi ColorColumn guifg=#5c6370
     hi StatusLine guibg=#26292e
     hi CursorLine guibg=#23272c
@@ -261,6 +262,8 @@ fun! InitColors()
     hi link vimAutoEvent Structure
     hi link vimAutoEventList Structure
     hi link vimGroup Structure
+
+    hi Interface guifg=#fd971f
 
     hi Character guifg=#ce9178
     hi link vimString Character
@@ -402,6 +405,12 @@ fun! InitAle()
     let g:ale_linters = { 
     \ 'cs': ['OmniSharp']
     \ }
+
+    hi link ALEError Error
+    hi link ALEStyleWarning Warning
+    hi link ALEStyleWarningSign Warning
+    hi link ALEErrorLine Error
+    hi link ALEErrorSign Error
 endfun
 
 :call InitAle()
@@ -497,8 +506,6 @@ fun! InitCSharp()
     autocmd FileType cs nmap <silent> <buffer> <Leader>f <Plug>(omnisharp_code_format)
     autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
 
-    autocmd BufWritePre *.cs call OmniSharp#actions#format#Format()
-
     autocmd BufNewFile,BufRead *.cs
       \   set tabstop=2
       \ | set softtabstop=2
@@ -507,13 +514,32 @@ fun! InitCSharp()
       \ | set autoindent
 
     " Colors.
+    hi link csNumber Function
+
     hi link csModifier Keyword
     hi link csTypeDecleration Keyword
     hi link csType Keyword
 
     hi link csStorage Identifier
+    hi link csClassType Identifier
+    hi link csLogicSymbols Identifier
 
     hi link csClass Structure
+
+    hi link csString Character
+    hi link csVerbatimString Character
+    hi link csQuote Character
+
+    " OmniSharp semantic highlighting.
+    let g:OmniSharp_highlight_groups = {
+    \ 'Keyword': 'Keyword',
+    \ 'ClassName': 'Structure',
+    \ 'TypeParameterName': 'Identifier',
+    \ 'InterfaceName': 'Interface',
+    \ 'NumericLiteral': 'Function',
+    \ 'Operator': 'Operator',
+    \ 'Punctuation': 'White',
+    \ }
 endfun
 
 :call InitCSharp()
