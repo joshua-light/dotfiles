@@ -264,6 +264,7 @@ fun! InitColors()
     hi link vimGroup Structure
 
     hi Interface guifg=#fd971f
+    hi Enum guifg=#92e22e
 
     hi Character guifg=#ce9178
     hi link vimString Character
@@ -528,12 +529,15 @@ fun! InitCSharp()
 
     hi link csString Character
     hi link csVerbatimString Character
+    hi link csInterpolatedString Character
     hi link csQuote Character
 
     " OmniSharp semantic highlighting.
     let g:OmniSharp_highlight_groups = {
     \ 'Keyword': 'Keyword',
     \ 'ClassName': 'Structure',
+    \ 'StructName': 'Structure',
+    \ 'EnumName': 'Enum',
     \ 'TypeParameterName': 'Identifier',
     \ 'InterfaceName': 'Interface',
     \ 'NumericLiteral': 'Function',
