@@ -515,11 +515,12 @@ key_bindings:
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
-  - { key: P,      mods: Command,         chars: "\x1bp"    }
-  - { key: G,      mods: Command,         chars: "\x1bg"    }
-  - { key: W,      mods: Command,         chars: "\x1bw"    }
-  - { key: X,      mods: Command,         chars: "\x1bx"    }
-  - { key: Key1,   mods: Command,         chars: "\x1b1"    }
+  - { key: P,           mods: Command,         chars: "\x1bp"    }
+  - { key: G,           mods: Command,         chars: "\x1bg"    }
+  - { key: W,           mods: Command,         chars: "\x1bw"    }
+  - { key: X,           mods: Command,         chars: "\x1bx"    }
+  - { key: Key1,        mods: Command,         chars: "\x1b1"    }
+  - { key: Semicolon,   mods: Command,         chars: "\x1b;"    }
   #- { key: Equals, mods: Command,         action: IncreaseFontSize }
   #- { key: Add,    mods: Command,         action: IncreaseFontSize }
   #- { key: Minus,  mods: Command,         action: DecreaseFontSize }
