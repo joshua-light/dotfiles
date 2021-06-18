@@ -189,6 +189,12 @@ filetype indent plugin on
 
 syntax enable
 
+augroup ActiveWindow
+    autocmd!
+    autocmd WinEnter * set cul
+    autocmd WinLeave * set nocul
+augroup END
+
 fun! InitCompletion()
     set completeopt=menuone,noinsert
 
@@ -232,6 +238,7 @@ fun! InitColors()
     hi White guifg=#abb2bf
     hi ColorColumn guifg=#5c6370
     hi StatusLine guibg=#26292e
+    hi StatusLineNc guibg=#26292e
     hi CursorLine guibg=#23272c
 
     hi Keyword guifg=#c678dd
