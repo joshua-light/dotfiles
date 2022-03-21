@@ -39,6 +39,3 @@ _Note that Python packages should also be installed inside a `virtualenv`._
 
 ## Rofi
 - _Nothing special_
-
-## Picom
-- _Nothing special_
