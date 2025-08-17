@@ -1,0 +1,258 @@
+{
+    // Editor.
+    "editor.codeLens": false,
+    "editor.fontLigatures": true,
+    "editor.fontWeight": "400",
+    "editor.fontSize": 12,
+    "terminal.integrated.fontSize": 12,
+    "editor.fontFamily": "JetBrainsMono Nerd Font",
+    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+    "editor.lineNumbers": "relative",
+    "editor.cursorBlinking": "solid",
+    "editor.snippetSuggestions": "bottom",
+    "editor.glyphMargin": true,
+    "editor.minimap.enabled": false,
+    "editor.dragAndDrop": false,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": false
+    },
+    "editor.quickSuggestionsDelay": 5,
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.suggestOnTriggerCharacters": true,
+    "editor.suggestSelection": "recentlyUsed",
+    "editor.suggest.localityBonus": true,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.wordBasedSuggestions": "matchingDocuments",
+    "editor.occurrencesHighlight": "singleFile",
+    "editor.semanticHighlighting.enabled": true,
+    "editor.semanticTokenColorCustomizations": {
+        "[One Dark Pro Darker]": {
+            "enabled": true,
+            "rules": {
+                "enumMember": "#61AFEF",
+                "const": "#BCE2FE",
+                "variable.constant": "#BCE2FE",
+                "macro": "#C678DD",
+                "builtinType": "#C678DD",
+            }
+        }
+    },
+    "editor.tokenColorCustomizations": {
+        "[One Dark Pro Darker]": {
+            "strings": "#CE9178",
+            "variables": "#BCE2FE",
+            "functions": "#DCDCAA",
+            "keywords": "#C678DD",
+            "numbers": "#DCDCAA",
+            "types": "#61AFEF",
+            "textMateRules": [
+                // Punctuation.
+                { "scope": "variable.name", "settings": { "foreground": "#F92672", }  },
+                { "scope": "punctuation.accessor", "settings": { "foreground": "#F92672", }  },
+                { "scope": "keyword.operator", "settings": { "foreground": "#F92672", }  },
+                { "scope": "keyword.operator.comparison", "settings": { "foreground": "#F92672", }  },
+                { "scope": "keyword.operator.assignment", "settings": { "foreground": "#F92672", }  },
+                { "scope": "keyword.operator.arithmetic", "settings": { "fontStyle": "", "foreground": "#F92672" }  },
+                { "scope": "keyword.operator.increment", "settings": { "fontStyle": "", "foreground": "#F92672" }  },
+                { "scope": "keyword.operator.relational", "settings": { "foreground": "#F92672", }  },
+                { "scope": "keyword.operator.logical", "settings": { "foreground": "#F92672", }  },
+                { "scope": "punctuation.separator.period.python", "settings": { "fontStyle": "", "foreground": "#F92672" }  },
+
+                // Strings.
+                { "scope": "punctuation.definition.string.begin", "settings": { "foreground": "#CE9178", }  },
+                { "scope": "punctuation.definition.string.end", "settings": { "foreground": "#CE9178", }  },
+
+                // Keywords.
+                { "scope": "keyword.operator.expression", "settings": { "foreground": "#C678DD", }  },
+                { "scope": "constant.language", "settings": { "foreground": "#C678DD", }  },
+                { "scope": "variable.language.this.cs", "settings": { "fontStyle": "", "foreground": "#C678DD", }  },
+                { "scope": "keyword.control.nim", "settings": { "foreground": "#C678DD", }  },
+                { "scope": "support.variable.magic.python", "settings": { "fontStyle": "", "foreground": "#C678DD" }  },
+                { "scope": "variable.parameter.function.language.special.self.python", "settings": { "fontStyle": "", "foreground": "#C678DD", }  },
+                { "scope": "variable.language.special.self.python", "settings": { "fontStyle": "", "foreground": "#C678DD", }  },
+                { "scope": "variable.language.self.rust", "settings": { "fontStyle": "", "foreground": "#C678DD", }  },
+                { "scope": "meta.attribute.rust", "settings": { "fontStyle": "", "foreground": "#C678DD", }  },
+                { "scope": "entity.name.function.macro.rust", "settings": { "fontStyle": "", "foreground": "#C678DD", }  },
+
+                { "scope": "entity.other.attribute-name.table.toml", "settings": { "foreground": "#61AFEF", }  },
+                { "scope": "entity.other.attribute-name.table.array.toml", "settings": { "foreground": "#61AFEF", }  },
+
+                // Variables.
+                { "scope": "entity.name.variable.local.cs", "settings": { "foreground": "#BCE2FE", }  },
+                { "scope": "entity.name.variable.field.cs", "settings": { "foreground": "#BCE2FE", }  },
+                { "scope": "entity.name.variable.parameter.cs", "settings": { "foreground": "#BCE2FE", }  },
+                { "scope": "variable.other.object", "settings": { "foreground": "#BCE2FE", }  },
+                { "scope": "variable.other.constant", "settings": { "foreground": "#BCE2FE", }  },
+                { "scope": "variable.other.object.property", "settings": { "foreground": "#BCE2FE", }  },
+                { "scope": "variable.other.readwrite", "settings": { "foreground": "#BCE2FE", }  },
+                { "scope": "support.type.property-name.json", "settings": { "foreground": "#BCE2FE", }  },
+                { "scope": "support.type.property-name.json punctuation", "settings": { "foreground": "#BCE2FE", }  },
+                { "scope": "comment.line.double-slash", "settings": { "fontStyle": "", }  },
+                { "scope": "source.shell", "settings": { "foreground": "#BCE2FE", }  },
+                { "scope": "meta.template.expression", "settings": { "foreground": "#BCE2FE", }  },
+                { "scope": "source.python", "settings": { "foreground": "#BCE2FE", }  },
+                { "scope": "source.rust", "settings": { "foreground": "#BCE2FE", }  },
+                { "scope": "text.html.markdown", "settings": { "fontStyle": "", "foreground": "#BCE2FE", }  },
+                { "scope": "variable.parameter.function.language.python", "settings": { "fontStyle": "", "foreground": "#BCE2FE", }  },
+                { "scope": "constant.other.caps.rust", "settings": { "fontStyle": "", "foreground": "#BCE2FE", }  },
+
+                // Methods.
+                { "scope": "support.function.any-method.nim", "settings": { "foreground": "#DCDCAA", }  },
+                { "scope": "entity.name.namespace", "settings": { "foreground": "#DCDCAA", }  },
+                { "scope": "entity.name.type.namespace", "settings": { "foreground": "#DCDCAA", }  },
+                { "scope": "meta.function-call.generic.python", "settings": { "foreground": "#DCDCAA", }  },
+                { "scope": "entity.name.function.call.cpp", "settings": { "foreground": "#DCDCAA", }  },
+                { "scope": "entity.name.section.markdown", "settings": { "fontStyle": "", "foreground": "#DCDCAA", }  },
+                { "scope": "punctuation.definition.heading.markdown", "settings": { "fontStyle": "", "foreground": "#DCDCAA", }  },
+                
+                // Types.
+                { "scope": "entity.name.type.class", "settings": { "foreground": "#61AFEF", }  },
+                { "scope": "storage.type.cs", "settings": { "foreground": "#61AFEF", }  },
+                { "scope": "support.type.python", "settings": { "foreground": "#61AFEF", }  },
+                { "scope": "entity.other.inherited-class.python", "settings": { "fontStyle": "", "foreground": "#61AFEF" }  },
+
+                // Interfaces.
+                { "scope": "entity.name.type.interface", "settings": { "foreground": "#FD971F", }  },
+
+                // Enums.
+                { "scope": "entity.name.type.enum", "settings": { "foreground": "#92e22e", }  },
+
+                // Comments.
+                { "scope": "comment.block.documentation", "settings": { "fontStyle": "", "foreground": "#636872"}  },
+                { "scope": "entity.name.tag", "settings": { "foreground": "#919295", }  },
+                { "scope": "entity.other.attribute-name", "settings": { "foreground": "#BBBBBB", }  },
+                { "scope": "variable.parameter.function-call.python", "settings": { "fontStyle": "", "foreground": "#666666", }  },
+                { "scope": "punctuation.separator.continuation", "settings": { "foreground": "#666666", }  },
+
+                // Discards.
+                { "scope": "keyword.control.import.python", "settings": { "fontStyle": "", }  },
+                { "scope": "keyword.control.flow.python", "settings": { "fontStyle": "", }  },
+                { "scope": "comment.line.number-sign.python", "settings": { "fontStyle": "", }  },
+            ]
+        }
+    },
+
+    "workbench.colorTheme": "One Dark Pro Darker",
+    "workbench.tree.indent": 16,
+    "workbench.editor.enablePreview": false,
+    "workbench.tips.enabled": false,
+
+    "workbench.statusBar.visible": true,
+    "workbench.dialogs.useSimplified": true,
+    "workbench.colorCustomizations": {
+        "editor.background": "#2d2f36",
+        "terminal.background": "#202227",
+        "sideBar.border": "#000000",
+        "tab.border": "#000000",
+        "panel.border": "#000000",
+        "terminal.border": "#000000",
+        "editorInfo.border": "#000000",
+        "menu.border": "#000000",
+        "input.border": "#000000",
+        "merge.border": "#000000",
+        "dropdown.border": "#000000",
+        "titleBar.border": "#000000",
+        "statusBar.border": "#000000",
+        "diffEditor.border": "#000000",
+        "panelInput.border": "#000000",
+        "activityBar.border": "#000000",
+        "editorWidget.border": "#000000",
+        "editorGroup.border": "#000000",
+        "editorWidget.resizeBorder": "#000000",
+        "sideBarSectionHeader.border": "#000000",
+        "peekView.border": "#000000",
+        "editorSuggestWidget.highlightForeground": "#528bff",
+        "list.highlightForeground": "#528bff",
+        "editor.lineHighlightBackground": "#23272c",
+        "editorError.foreground": "#ff3333",
+        "editorWarning.foreground": "#ffb700",
+        "editorInfo.foreground": "#00ff00"
+    },
+
+    "extensions.ignoreRecommendations": false,
+    "breadcrumbs.enabled": false,
+    "window.zoomLevel": 0,
+    "git.enableSmartCommit": true,
+    "vsintellicode.modify.editor.suggestSelection": "disabled",
+    "window.menuBarVisibility": "toggle",
+
+    // Markdown.
+    "markdown.preview.fontSize": 18,
+
+    // Python.
+    "python.jediEnabled": true,
+
+    // Vim.
+    "vim.easymotion": true,
+    "vim.easymotionMarkerBackgroundColor": "#1E1E20",
+    "vim.easymotionMarkerFontFamily": "Operator Mono",
+    "vim.easymotionMarkerWidthPerChar": 12,
+    "vim.easymotionMarkerYOffset": 0,
+    "vim.easymotionMarkerHeight": 26,
+    "vim.easymotionMarkerFontSize": "19",
+    "vim.autoindent": true,
+    "vim.foldfix": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["s"],
+            "after": ["leader", "leader", "s"]
+        },
+        {
+            "before": ["J"],
+            "after": ["g", "T"]
+        },
+        {
+            "before": ["K"],
+            "after": ["g", "t"]
+        }
+    ],
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "j"],
+            "after": ["<Esc>"]
+        },
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<c-j>"],
+            "after": ["m", "a", "o", "<Esc>", "`", "a"]
+        },
+        {
+            "before": ["0"],
+            "after": ["^"]
+        }
+    ],
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
+    "git.autofetch": true,
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-xelatex",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "--shell-escape",
+                "%DOC%"
+            ]
+        }
+    ],
+    "workbench.activityBar.location": "hidden",
+    "workbench.iconTheme": "catppuccin-frappe",
+
+    "editor.defaultFormatter": "JetBrains.resharper-code",
+    "[csharp]": {
+        "editor.defaultFormatter": "JetBrains.resharper-code",
+        "editor.formatOnSave": true
+    },
+
+    "editor.inlayHints.enabled": "off",
+    "git.confirmSync": false,
+    "explorer.confirmDragAndDrop": false,
+}
