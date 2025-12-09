@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+## Copyright (C) 2020-2025 Aditya Shakya <adi1090x@gmail.com>
+##
+## launch waybar with alt config
+
+CONFIG="$HOME/.config/hypr/waybar/config"
+STYLE="$HOME/.config/hypr/waybar/style.css"
+
+toggle_statusbar() {
+	if pgrep -x waybar >/dev/null; then
+		pkill waybar
+	else
+		waybar --bar main-bar --log-level error --config "${CONFIG}" --style "${STYLE}" &
+	fi
+}
+
+if [[ "$1" == "--toggle" ]]; then
+	toggle_statusbar
+	exit 0
+fi
+
+if ! pgrep -x waybar >/dev/null; then
+	waybar --bar main-bar --log-level error --config "${CONFIG}" --style "${STYLE}" &
+fi

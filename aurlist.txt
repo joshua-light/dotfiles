@@ -1,0 +1,8 @@
+google-chrome
+jetbrains-toolbox
+minecraft-launcher
+minecraft-launcher-debug
+snapd
+unityhub
+visual-studio-code-bin
+yay-debug
