@@ -8,18 +8,44 @@ set incsearch
 " later).
 set visualbell
 
+" Use cs"' to change surroundings, ds( to delete surrounding parens, ys iw" to wrap a word in ".
+set surround
+
+" Use gcc to comment a line, gc + motion to comment a block.
+set commentary
+
+" Gives you a brief visual flash of what you just yanked.
+set highlightedyank
+
+" Displays a popup with available keybindings as you type.
+set which-key
+
 " Screen flashing is disabled at a terminal level.
 set t_vb=
 
 " Set leader as space character.
 let mapleader = ' '
 
+set scrolloff=8
+set incsearch
+set smartcase
+set number
+set relativenumber
+set clipboard+=unnamed
+set clipboard+=ideaput
+set ideamarks
+
+set quickscope
+set easymotion
+
+nmap s <Action>(AceAction)
+
 " --------------
 " -- Bindings --
 " --------------
 " Use 0 as ^.
 :noremap 0 ^
-:noremap ^ 0
+:noremap ^ 0a
 
 " Use jj to escape Insert mode.
 imap jj <Esc>
@@ -30,9 +56,6 @@ imap <C-c> <Esc>
 " Tabs.
 :nnoremap J gT
 :nnoremap K gt
-
-" Jump to the beginning of a word that matches the character.
-:nnoremap s :action emacsIDEAs.AceJumpWord<cr>
 
 " Put a `;` character at the end of the line.
 :nnoremap <Leader>; mzA;<Esc>`z
