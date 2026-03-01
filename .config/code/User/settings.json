@@ -255,4 +255,12 @@
     "editor.inlayHints.enabled": "off",
     "git.confirmSync": false,
     "explorer.confirmDragAndDrop": false,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "chat.mcp.discovery.enabled": {
+        "claude-desktop": true,
+        "windsurf": true,
+        "cursor-global": true,
+        "cursor-workspace": true
+    },
+
 }

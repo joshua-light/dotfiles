@@ -127,7 +127,7 @@
     {
         "key": "`",
         "command": "editor.action.rename",
-        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly && (vim.mode == 'Normal' || vim.mode == 'Visual')"
     },
     {
         "key": "f2",
