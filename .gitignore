@@ -3,3 +3,7 @@ __pycache__/
 tags
 
 .DS_Store
+
+# Pi local-only runtime/secrets
+.pi/agent/auth.json
+.pi/agent/sessions/

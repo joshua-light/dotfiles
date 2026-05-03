@@ -33,6 +33,12 @@ _My dotfiles for different applications._
 
 _Note that Python packages should also be installed inside a `virtualenv`._
 
+## Pi
+- `mkdir -p ~/.pi/agent`
+- `ln -sfn $DOTFILES$/.pi/agent/settings.json ~/.pi/agent/settings.json`
+- `ln -sfn $DOTFILES$/.pi/agent/extensions ~/.pi/agent/extensions`
+- Keep `~/.pi/agent/auth.json` and `~/.pi/agent/sessions/` local; do not commit them.
+
 ## Screenshots
 - [`shotgun`](https://github.com/neXromancers/shotgun)
 - [`slop`](https://github.com/naelstrof/slop)
